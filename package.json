@@ -25,6 +25,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "mineflayer": "^4.39.0",
+    "mineflayer-pathfinder": "^2.4.5",
     "winston": "^3.19.0"
   },
   "devDependencies": {
