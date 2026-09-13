@@ -1,0 +1,43 @@
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:38:46.815Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:38:47.041Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:38:47.079Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:38:47.121Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:38:47.198Z"}
+{"category":"connection","level":"info","message":"Target server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T07:38:47.042Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T07:38:47.043Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T07:38:47.043Z"}
+{"category":"memory","entries":0,"level":"info","message":"Loaded persistent memory","service":"xykeel","timestamp":"2026-09-13T07:38:47.044Z"}
+{"category":"system","level":"info","message":"AI provider initialized: local","service":"xykeel","timestamp":"2026-09-13T07:38:47.045Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T07:38:47.047Z"}
+{"category":"system","level":"info","message":"Xykeel is ready. Waiting for handoff...","service":"xykeel","timestamp":"2026-09-13T07:38:47.047Z"}
+{"category":"goal","id":"3bfc8db5-3713-46bb-a913-f00a259806f8","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T07:38:47.059Z"}
+{"category":"system","level":"info","message":"Xykeel shutting down...","service":"xykeel","timestamp":"2026-09-13T07:38:47.061Z"}
+{"category":"memory","level":"info","message":"Memory saved","service":"xykeel","timestamp":"2026-09-13T07:38:47.067Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T07:38:47.070Z"}
+{"category":"connection","level":"info","message":"Target server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T07:38:47.080Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T07:38:47.080Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T07:38:47.080Z"}
+{"category":"memory","entries":0,"level":"info","message":"Loaded persistent memory","service":"xykeel","timestamp":"2026-09-13T07:38:47.081Z"}
+{"category":"system","level":"info","message":"AI provider initialized: local","service":"xykeel","timestamp":"2026-09-13T07:38:47.082Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T07:38:47.083Z"}
+{"category":"system","level":"info","message":"Xykeel is ready. Waiting for handoff...","service":"xykeel","timestamp":"2026-09-13T07:38:47.084Z"}
+{"category":"goal","id":"f29a2a00-0155-4aac-b62c-b3523590b4e0","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T07:38:47.085Z"}
+{"category":"system","level":"info","message":"Xykeel shutting down...","service":"xykeel","timestamp":"2026-09-13T07:38:47.089Z"}
+{"category":"memory","level":"info","message":"Memory saved","service":"xykeel","timestamp":"2026-09-13T07:38:47.090Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T07:38:47.091Z"}
+{"category":"connection","level":"info","message":"Target server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T07:38:47.122Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T07:38:47.122Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T07:38:47.127Z"}
+{"category":"memory","entries":0,"level":"info","message":"Loaded persistent memory","service":"xykeel","timestamp":"2026-09-13T07:38:47.128Z"}
+{"category":"system","level":"info","message":"AI provider initialized: local","service":"xykeel","timestamp":"2026-09-13T07:38:47.134Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T07:38:47.137Z"}
+{"category":"system","level":"info","message":"Xykeel is ready. Waiting for handoff...","service":"xykeel","timestamp":"2026-09-13T07:38:47.138Z"}
+{"category":"chat","level":"info","message":"[Alice] Hello Xykeel!","service":"xykeel","timestamp":"2026-09-13T07:38:47.142Z"}
+{"category":"system","level":"info","message":"Xykeel shutting down...","service":"xykeel","timestamp":"2026-09-13T07:38:47.145Z"}
+{"category":"memory","level":"info","message":"Memory saved","service":"xykeel","timestamp":"2026-09-13T07:38:47.146Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T07:38:47.149Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:42:33.143Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:42:33.201Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:42:33.235Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:42:33.255Z"}
+{"category":"system","level":"info","message":"Xykeel starting up...","service":"xykeel","timestamp":"2026-09-13T07:42:33.274Z"}
