@@ -36,10 +36,12 @@ export function createMinecraftClient(
 
       const newBot = mineflayer.createBot(options);
 
-      // Load pathfinder plugin immediately
-      newBot.loadPlugin(pathfinder as unknown as Parameters<typeof newBot.loadPlugin>[0]);
-
       newBot.on("spawn", () => {
+        // Load pathfinder plugin after spawn — avoids "plugin needs to be a function" errors
+        // and ensures bot entity is ready for pathfinding
+        if (!newBot.pathfinder) {
+          newBot.loadPlugin(pathfinder as unknown as Parameters<typeof newBot.loadPlugin>[0]);
+        }
         connected = true;
         bot = newBot;
         logger.connection(`Connected as ${config.username}`);

@@ -218,6 +218,62 @@ describe("Multi-Provider Router", () => {
     // OpenAI is a paid provider, should be disabled when allowPaidProviders=false
     expect(openai?.enabled).toBe(false);
   });
+
+  it("skips providers with placeholder base URLs", async () => {
+    process.env.AI_AZURE_API_KEY = "real-key-123";
+    process.env.AI_AZURE_BASE_URL = "https://your-resource.openai.azure.com/v1";
+    const config = loadConfig();
+    delete process.env.AI_AZURE_API_KEY;
+    delete process.env.AI_AZURE_BASE_URL;
+    const fallback = new LocalAIProvider();
+    const router = createMultiProviderRouter(config, logger, fallback);
+    await router.initialize();
+    const registry = router.getRegistry();
+    const azure = registry.get("azure");
+    // Azure with placeholder URL should not be registered
+    expect(azure).toBeUndefined();
+  });
+
+  it("registers providers with valid config", async () => {
+    process.env.AI_GROQ_API_KEY = "gsk_test1234567890";
+    process.env.AI_GROQ_MODEL = "llama-3.1-8b-instant";
+    const config = loadConfig();
+    delete process.env.AI_GROQ_API_KEY;
+    delete process.env.AI_GROQ_MODEL;
+    const fallback = new LocalAIProvider();
+    const router = createMultiProviderRouter(config, logger, fallback);
+    await router.initialize();
+    const registry = router.getRegistry();
+    const groq = registry.get("groq");
+    expect(groq).toBeDefined();
+    expect(groq?.state).toBe("available");
+  });
+
+  it("raven not marked available when model is empty", async () => {
+    process.env.AI_RAVEN_ENABLED = "true";
+    process.env.AI_RAVEN_MODEL = "";
+    const config = loadConfig();
+    delete process.env.AI_RAVEN_ENABLED;
+    delete process.env.AI_RAVEN_MODEL;
+    const fallback = new LocalAIProvider();
+    const router = createMultiProviderRouter(config, logger, fallback);
+    await router.initialize();
+    const metrics = router.getMetrics();
+    expect(metrics.ravenAvailable).toBe(false);
+  });
+
+  it("raven marked available when enabled and model set", async () => {
+    process.env.AI_RAVEN_ENABLED = "true";
+    process.env.AI_RAVEN_MODEL = "test-model";
+    const config = loadConfig();
+    delete process.env.AI_RAVEN_ENABLED;
+    delete process.env.AI_RAVEN_MODEL;
+    const fallback = new LocalAIProvider();
+    const router = createMultiProviderRouter(config, logger, fallback);
+    await router.initialize();
+    const metrics = router.getMetrics();
+    expect(metrics.ravenAvailable).toBe(true);
+  });
 });
 
 describe("Identity System", () => {

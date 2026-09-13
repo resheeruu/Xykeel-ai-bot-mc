@@ -86,7 +86,7 @@ export function summarizeInventory(
 function categorizeItem(name: string): string {
   if (name.includes("pickaxe")) return "pickaxes";
   if (name.includes("sword")) return "swords";
-  if (name.includes("axe") && !name.includes("iron_axe")) return "axes";
+  if (name.includes("axe")) return "axes";
   if (name.includes("hoe")) return "hoes";
   if (name.includes("_log")) return "wood";
   if (name.includes("cobblestone") || name.includes("stone")) return "stone";

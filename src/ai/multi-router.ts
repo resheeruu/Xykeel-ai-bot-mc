@@ -87,6 +87,8 @@ export function createMultiProviderRouter(
     if (config.ai.ravenEnabled && config.ai.ravenModel) {
       metrics.ravenAvailable = true;
       logger.ai("Raven AI configured");
+    } else if (config.ai.ravenEnabled && !config.ai.ravenModel) {
+      logger.ai("Raven enabled but no model configured — skipping");
     }
     const available = registry.getAvailable();
     metrics.configuredProviders = registry.getAll().length;
@@ -103,12 +105,17 @@ export function createMultiProviderRouter(
         }
         continue;
       }
+      const baseUrl = providerSlot.baseUrl || getDefaultBaseUrl(slot.name);
+      if (!baseUrl || isPlaceholderUrl(baseUrl)) {
+        logger.ai(`Provider ${slot.name} skipped: placeholder or missing base URL`);
+        continue;
+      }
       const entry = {
         name: slot.name,
         state: "available" as const,
         apiKey: providerSlot.apiKey,
         model: providerSlot.model || getDefaultModel(slot.name),
-        baseUrl: providerSlot.baseUrl || getDefaultBaseUrl(slot.name),
+        baseUrl,
         enabled: true,
         priority: slot.priority,
       };
@@ -174,6 +181,10 @@ export function createMultiProviderRouter(
   function isPaidProvider(name: string): boolean {
     const paid = new Set(["anthropic", "openai", "vertex", "azure"]);
     return paid.has(name);
+  }
+
+  function isPlaceholderUrl(url: string): boolean {
+    return url.includes("your-resource") || url.includes("your-") || url.includes("example.com");
   }
 
   function createOpenAICompatibleProvider(name: string, apiKey: string, model: string, baseUrl: string): AIProvider {

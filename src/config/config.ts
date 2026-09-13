@@ -146,7 +146,10 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
   } satisfies XykeelConfig;
 
   if (merged.minecraft.auth === "microsoft" && !merged.minecraft.email) {
-    merged.minecraft.auth = "offline";
+    throw new Error(
+      "MC_AUTH=microsoft requires MC_EMAIL. " +
+      "Set MC_EMAIL to your Microsoft account email, or use MC_AUTH=offline for an independent offline-mode bot."
+    );
   }
   if (merged.minecraft.auth === "offline") {
     merged.minecraft.email = "";

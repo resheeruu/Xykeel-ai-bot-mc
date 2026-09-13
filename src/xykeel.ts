@@ -278,7 +278,7 @@ export class XykeelBot {
       this.currentActionIndex = 0;
     });
 
-    // Kicked -> handle handoff
+    // Kicked -> handle disconnect
     bot.on("kicked", (reason: string) => {
       this.logger.disconnection(`Kicked: ${reason}`);
       this.handleDisconnect();

@@ -59,11 +59,10 @@ describe("Configuration", () => {
     expect(config.ai.providers.openai.apiKey).toBe("");
   });
 
-  it("microsoft auth without email falls back to offline", () => {
-    const config = loadConfig({
+  it("microsoft auth without email throws configuration error", () => {
+    expect(() => loadConfig({
       minecraft: { host: "test", port: 25565, version: "1.21.1", username: "X", email: "", password: "", auth: "microsoft" },
-    });
-    expect(config.minecraft.auth).toBe("offline");
+    })).toThrow("MC_AUTH=microsoft requires MC_EMAIL");
   });
 
   it("offline auth clears credentials", () => {
@@ -101,5 +100,50 @@ describe("Configuration", () => {
     const config = loadConfig();
     // OwnerConfig no longer exists - Xykeel is independent
     expect(config).not.toHaveProperty("owner");
+  });
+
+  it("microsoft auth with email succeeds", () => {
+    const config = loadConfig({
+      minecraft: { host: "test", port: 25565, version: "1.21.1", username: "X", email: "user@test.com", password: "", auth: "microsoft" },
+    });
+    expect(config.minecraft.auth).toBe("microsoft");
+    expect(config.minecraft.email).toBe("user@test.com");
+  });
+
+  it("offline auth never requires email", () => {
+    const config = loadConfig({
+      minecraft: { host: "test", port: 25565, version: "1.21.1", username: "Xykeel", email: "", password: "", auth: "offline" },
+    });
+    expect(config.minecraft.auth).toBe("offline");
+    expect(config.minecraft.email).toBe("");
+  });
+
+  it("all 30 provider slots exist in config", () => {
+    const config = loadConfig();
+    const providers = Object.keys(config.ai.providers);
+    expect(providers.length).toBe(30);
+    expect(providers).toContain("openai");
+    expect(providers).toContain("anthropic");
+    expect(providers).toContain("gemini");
+    expect(providers).toContain("groq");
+    expect(providers).toContain("azure");
+  });
+
+  it("providers without API keys have empty apiKey", () => {
+    const config = loadConfig();
+    expect(config.ai.providers.groq.apiKey).toBe("");
+    expect(config.ai.providers.openai.apiKey).toBe("");
+    expect(config.ai.providers.anthropic.apiKey).toBe("");
+  });
+
+  it("allowPaidProviders defaults to false", () => {
+    const config = loadConfig();
+    expect(config.ai.allowPaidProviders).toBe(false);
+  });
+
+  it("raven defaults to disabled", () => {
+    const config = loadConfig();
+    expect(config.ai.ravenEnabled).toBe(false);
+    expect(config.ai.ravenModel).toBe("");
   });
 });
