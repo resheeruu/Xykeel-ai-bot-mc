@@ -86,3 +86,26 @@ describe("Gathering", () => {
     expect(typeof gathering.collectNearby).toBe("function");
   });
 });
+
+describe("CJS interop regression", () => {
+  it("mineflayer-pathfinder goals accessible via default import", async () => {
+    const pf = await import("mineflayer-pathfinder");
+    const mod = pf.default ?? pf;
+    expect(typeof mod.goals).toBe("object");
+    expect(typeof mod.goals.GoalBlock).toBe("function");
+    const goal = new mod.goals.GoalBlock(1, 2, 3);
+    expect(goal.x).toBe(1);
+    expect(goal.y).toBe(2);
+    expect(goal.z).toBe(3);
+  });
+
+  it("navigation module loads without named-export error", () => {
+    const nav = createNavigation(logger);
+    expect(nav).toBeDefined();
+  });
+
+  it("survival actions module loads without named-export error", () => {
+    const actions = createSurvivalActions(logger);
+    expect(actions).toBeDefined();
+  });
+});

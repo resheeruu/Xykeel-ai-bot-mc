@@ -1,7 +1,11 @@
 import type { Bot } from "mineflayer";
 import type { XykeelLogger } from "../logging/logger.js";
 import type { InventoryState } from "../minecraft/inventory.js";
-import { goals } from "mineflayer-pathfinder";
+import type { goals as Goals } from "mineflayer-pathfinder";
+// CJS default import — named ESM imports fail for CJS packages in Node 24 ESM.
+import pathfinderPkg from "mineflayer-pathfinder";
+
+const { goals } = pathfinderPkg as { goals: typeof Goals };
 
 export interface SurvivalActions {
   eat(bot: Bot, inventory: InventoryState): Promise<boolean>;

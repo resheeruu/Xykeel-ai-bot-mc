@@ -1,6 +1,13 @@
 import type { Bot } from "mineflayer";
 import type { XykeelLogger } from "../logging/logger.js";
-import { goals } from "mineflayer-pathfinder";
+// CJS default imports — named ESM imports fail for CJS packages in Node 24 ESM.
+import pathfinderPkg from "mineflayer-pathfinder";
+import mcDataFn from "minecraft-data";
+
+const { goals } = pathfinderPkg as { goals: typeof pathfinderPkg.goals };
+// Movements constructor accepts (bot, mcData) at runtime; type declaration only declares (bot).
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MovementsCtor = pathfinderPkg.Movements as any;
 
 export interface Position {
   x: number;
@@ -29,11 +36,8 @@ export function createNavigation(logger: XykeelLogger): NavigationSystem {
   function initMovements(bot: Bot): void {
     if (movementsInitialized.has(bot)) return;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const mcData = require("minecraft-data")(bot.version);
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const Movements = require("mineflayer-pathfinder").Movements;
-      const mov = new Movements(bot, mcData);
+      const mcData = mcDataFn(bot.version);
+      const mov = new MovementsCtor(bot, mcData);
       bot.pathfinder.setMovements(mov);
       movementsInitialized.add(bot);
       logger.action("Pathfinder movements initialized");
