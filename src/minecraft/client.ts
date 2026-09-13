@@ -1,4 +1,5 @@
 import mineflayer from "mineflayer";
+import pathfinder from "mineflayer-pathfinder";
 import type { MinecraftConfig } from "../config/config.js";
 import type { XykeelLogger } from "../logging/logger.js";
 
@@ -34,6 +35,9 @@ export function createMinecraftClient(
       }
 
       const newBot = mineflayer.createBot(options);
+
+      // Load pathfinder plugin immediately
+      newBot.loadPlugin(pathfinder as unknown as Parameters<typeof newBot.loadPlugin>[0]);
 
       newBot.on("spawn", () => {
         connected = true;

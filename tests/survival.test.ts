@@ -6,6 +6,29 @@ import { createLogger } from "../src/logging/logger.js";
 
 const logger = createLogger({ level: "error", output: "console", path: "/dev/null" });
 
+// Minimal mock bot for navigation tests
+function mockBot() {
+  const listeners: Record<string, Function[]> = {};
+  return {
+    entity: { position: { x: 0, y: 64, z: 0, clone() { return { ...this }; }, distanceTo() { return 0; } } },
+    version: "1.21.1",
+    pathfinder: {
+      setMovements() {},
+      setGoal() {},
+    },
+    on(event: string, fn: Function) {
+      (listeners[event] ??= []).push(fn);
+    },
+    removeListener(event: string, fn: Function) {
+      const arr = listeners[event];
+      if (arr) {
+        const idx = arr.indexOf(fn);
+        if (idx >= 0) arr.splice(idx, 1);
+      }
+    },
+  } as never;
+}
+
 describe("Navigation", () => {
   it("creates navigation system", () => {
     const nav = createNavigation(logger);
@@ -14,6 +37,8 @@ describe("Navigation", () => {
     expect(typeof nav.getPath).toBe("function");
     expect(typeof nav.getCurrentPosition).toBe("function");
     expect(typeof nav.distanceTo).toBe("function");
+    expect(typeof nav.initMovements).toBe("function");
+    expect(typeof nav.cancelCurrent).toBe("function");
   });
 
   it("calculates distance correctly", () => {
@@ -24,15 +49,22 @@ describe("Navigation", () => {
 
   it("getPath returns target", () => {
     const nav = createNavigation(logger);
-    const path = nav.getPath({ x: 0, y: 0, z: 0 }, { x: 10, y: 10, z: 10 });
+    const bot = mockBot();
+    const path = nav.getPath(bot, { x: 0, y: 0, z: 0 }, { x: 10, y: 10, z: 10 });
     expect(path.length).toBe(1);
     expect(path[0]).toEqual({ x: 10, y: 10, z: 10 });
   });
 
-  it("moveTo returns false when pathfinder unavailable", async () => {
+  it("moveTo returns false when pathfinder fails", async () => {
     const nav = createNavigation(logger);
-    const result = await nav.moveTo({ x: 10, y: 64, z: 10 });
+    const bot = mockBot();
+    const result = await nav.moveTo(bot, { x: 10, y: 64, z: 10 }, 2000);
     expect(result).toBe(false);
+  });
+
+  it("cancelCurrent does not throw", () => {
+    const nav = createNavigation(logger);
+    expect(() => nav.cancelCurrent()).not.toThrow();
   });
 });
 

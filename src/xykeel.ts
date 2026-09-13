@@ -19,11 +19,13 @@ import { createWorldTracker, type WorldTracker } from "./minecraft/world.js";
 import { createInventoryTracker, type InventoryTracker } from "./minecraft/inventory.js";
 import { createPlanner, type Planner, type Plan } from "./autonomy/planner.js";
 import { createSurvivalActions, type SurvivalActions } from "./survival/actions.js";
-import { createNavigation } from "./navigation/navigator.js";
+import { createNavigation, type NavigationSystem } from "./navigation/navigator.js";
 import { createHomeSystem } from "./world/home.js";
 import { createFarmSystem } from "./world/farm.js";
 import { createLocationTracker } from "./world/locations.js";
 import { createRelationshipSystem } from "./relationships/system.js";
+
+const ACTION_TIMEOUT_MS = 45_000;
 
 export type BotStatus =
   | "DISCONNECTED"
@@ -53,6 +55,7 @@ export class XykeelBot {
   private ai: AIProvider;
   private planner: Planner;
   private survivalActions: SurvivalActions;
+  private navigation: NavigationSystem;
 
   // Systems
   private homeSystem: ReturnType<typeof createHomeSystem>;
@@ -66,6 +69,10 @@ export class XykeelBot {
   private goals: Goal[] = [];
   private memoryPath: string;
   private running = false;
+
+  // Runtime safety
+  private actionAbort: AbortController | null = null;
+  private cycleRunning = false;
 
   // Timers
   private autonomyTimer: ReturnType<typeof setInterval> | null = null;
@@ -96,7 +103,7 @@ export class XykeelBot {
     this.ai = createAIProvider(this.config.ai);
     this.planner = createPlanner();
     this.survivalActions = createSurvivalActions(this.logger);
-    createNavigation(this.logger); // Initialize navigation system
+    this.navigation = createNavigation(this.logger);
 
     this.homeSystem = createHomeSystem(this.logger);
     this.farmSystem = createFarmSystem(this.logger);
@@ -145,6 +152,13 @@ export class XykeelBot {
     this.logger.system("=== Xykeel Bot Stopping ===");
     this.status = "STOPPING";
     this.running = false;
+
+    // Cancel any in-progress actions
+    if (this.actionAbort) {
+      this.actionAbort.abort();
+      this.actionAbort = null;
+    }
+    this.navigation.cancelCurrent();
 
     this.clearAllTimers();
 
@@ -227,6 +241,11 @@ export class XykeelBot {
   private wireBotEvents(bot: import("mineflayer").Bot): void {
     // Chat -> relationship + chat observer
     this.chatObserver.start(bot);
+
+    // Pathfinder movements init on spawn
+    bot.once("spawn", () => {
+      this.navigation.initMovements(bot);
+    });
 
     // Health tracking
     bot.on("health", () => {
@@ -330,6 +349,15 @@ export class XykeelBot {
 
   private async runAutonomyCycle(): Promise<void> {
     if (!this.running || this.status !== "XYKEEL_ACTIVE") return;
+    if (this.cycleRunning) return; // Prevent duplicate cycles
+    this.cycleRunning = true;
+
+    // Cancel any in-progress action from a previous cycle
+    if (this.actionAbort) {
+      this.actionAbort.abort();
+      this.actionAbort = null;
+    }
+    this.navigation.cancelCurrent();
 
     const bot = this.client.bot;
     if (!bot || !this.client.connected) return;
@@ -442,6 +470,8 @@ export class XykeelBot {
 
     // 10. SAVE MEMORY periodically (not every tick)
     // Memory is saved on disconnect and periodically via saveState
+
+    this.cycleRunning = false;
   }
 
   // ========================
@@ -449,6 +479,31 @@ export class XykeelBot {
   // ========================
 
   private async executeAction(
+    bot: import("mineflayer").Bot,
+    action: { type: string; description: string; params: Record<string, unknown> }
+  ): Promise<boolean> {
+    const abort = new AbortController();
+    this.actionAbort = abort;
+
+    const actionPromise = this.executeActionRaw(bot, action);
+    const timeoutPromise = new Promise<boolean>((resolve) => {
+      const timer = setTimeout(() => {
+        this.logger.error(`Action "${action.description}" timed out after ${ACTION_TIMEOUT_MS}ms`);
+        this.navigation.cancelCurrent();
+        resolve(false);
+      }, ACTION_TIMEOUT_MS);
+      abort.signal.addEventListener("abort", () => {
+        clearTimeout(timer);
+        resolve(false);
+      });
+    });
+
+    const result = await Promise.race([actionPromise, timeoutPromise]);
+    this.actionAbort = null;
+    return result;
+  }
+
+  private async executeActionRaw(
     bot: import("mineflayer").Bot,
     action: { type: string; description: string; params: Record<string, unknown> }
   ): Promise<boolean> {
@@ -541,11 +596,9 @@ export class XykeelBot {
           });
           if (log) {
             try {
-              await bot.pathfinder.goto(
-                new (await import("mineflayer-pathfinder")).goals.GoalBlock(
-                  log.position.x, log.position.y, log.position.z
-                )
-              );
+              await this.navigation.moveTo(bot, {
+                x: log.position.x, y: log.position.y, z: log.position.z
+              });
               await bot.dig(log);
             } catch {
               return false;
@@ -572,15 +625,21 @@ export class XykeelBot {
 
     try {
       await bot.equip(item, "hand");
-      // Place at current position + 1 forward
       if (bot.entity?.position) {
-        const dir = bot.entity.yaw;
-        const x = bot.entity.position.x + Math.round(-Math.sin(dir));
-        const z = bot.entity.position.z + Math.round(Math.cos(dir));
-        const block = bot.blockAt({ x, y: bot.entity.position.y, z } as never);
-        if (block) {
-          // mineflayer placeBlock accepts {x,y,z} at runtime despite Vec3 type
-          await bot.placeBlock(block, { x: 0, y: 1, z: 0 } as never);
+        // Find a solid block below to place on
+        const pos = bot.entity.position;
+        const feetBlock = bot.blockAt(bot.entity.position);
+        const groundBlock = bot.blockAt({ x: Math.round(pos.x), y: Math.round(pos.y) - 1, z: Math.round(pos.z) } as never);
+        const target = groundBlock && groundBlock.name !== "air" ? feetBlock : groundBlock;
+        if (target && target.name !== "air") {
+          await bot.placeBlock(target, { x: 0, y: 1, z: 0 } as never);
+          this.logger.action(`Placed ${itemName}`);
+          return true;
+        }
+        // Fallback: place at current pos offset
+        const placeBlock = bot.blockAt({ x: Math.round(pos.x), y: Math.round(pos.y), z: Math.round(pos.z) } as never);
+        if (placeBlock) {
+          await bot.placeBlock(placeBlock, { x: 0, y: 1, z: 0 } as never);
           this.logger.action(`Placed ${itemName}`);
           return true;
         }
@@ -634,11 +693,9 @@ export class XykeelBot {
       if (!block) break;
 
       try {
-        await bot.pathfinder.goto(
-          new (await import("mineflayer-pathfinder")).goals.GoalBlock(
-            block.position.x, block.position.y, block.position.z
-          )
-        );
+        await this.navigation.moveTo(bot, {
+          x: block.position.x, y: block.position.y, z: block.position.z
+        });
         await bot.dig(block);
         mined++;
       } catch {
@@ -665,9 +722,7 @@ export class XykeelBot {
     }
 
     try {
-      await bot.pathfinder.goto(
-        new (await import("mineflayer-pathfinder")).goals.GoalBlock(home.x, home.y, home.z)
-      );
+      await this.navigation.moveTo(bot, { x: home.x, y: home.y, z: home.z });
       this.logger.action("Returned home");
       return true;
     } catch {
@@ -676,10 +731,51 @@ export class XykeelBot {
     }
   }
 
-  private async executeStoreResources(_bot: import("mineflayer").Bot): Promise<boolean> {
-    // Store resources at home chest
-    this.logger.action("Storing resources (chest interaction pending)");
-    return true;
+  private async executeStoreResources(bot: import("mineflayer").Bot): Promise<boolean> {
+    const chestBlock = bot.findBlock({
+      matching: (b) => b.name === "chest",
+      maxDistance: 16,
+    });
+
+    if (!chestBlock) {
+      this.logger.action("No chest found nearby to store resources");
+      return false;
+    }
+
+    try {
+      await this.navigation.moveTo(bot, {
+        x: chestBlock.position.x, y: chestBlock.position.y, z: chestBlock.position.z
+      });
+
+      const chest = await bot.openChest(chestBlock);
+
+      // Deposit all non-essential items (keep tools and food)
+      const keepItems = ["pickaxe", "sword", "axe", "hoe", "bread", "cooked_", "golden_"];
+      const itemsToStore = bot.inventory.items().filter((item) =>
+        !keepItems.some((k) => item.name.includes(k))
+      );
+
+      let stored = 0;
+      for (const item of itemsToStore) {
+        try {
+          await chest.deposit(item.type, null, item.count);
+          stored++;
+        } catch {
+          // Chest might be full
+          break;
+        }
+      }
+
+      await chest.close();
+      this.logger.action(`Stored ${stored} item stack(s) in chest`);
+      this.memory = remember(this.memory, "storage", "deposit", {
+        stored, timestamp: Date.now()
+      }, "low");
+      return stored > 0;
+    } catch (err) {
+      this.logger.error(`Failed to store resources: ${err}`);
+      return false;
+    }
   }
 
   private async executeFindFarmland(bot: import("mineflayer").Bot): Promise<boolean> {
@@ -723,14 +819,83 @@ export class XykeelBot {
     return false;
   }
 
-  private async executeTillSoil(_bot: import("mineflayer").Bot): Promise<boolean> {
-    this.logger.action("Tilling soil (hoe action pending)");
-    return true;
+  private async executeTillSoil(bot: import("mineflayer").Bot): Promise<boolean> {
+    const hoe = bot.inventory.items().find((i) => i.name.includes("hoe"));
+    if (!hoe) {
+      this.logger.action("No hoe available for tilling");
+      return false;
+    }
+
+    await bot.equip(hoe, "hand");
+
+    // Find nearby grass/dirt blocks to till
+    const farmland = bot.findBlock({
+      matching: (b) => b.name === "grass_block" || b.name === "dirt",
+      maxDistance: 6,
+    });
+
+    if (farmland) {
+      try {
+        await this.navigation.moveTo(bot, {
+          x: farmland.position.x, y: farmland.position.y, z: farmland.position.z
+        });
+        await bot.activateBlock(farmland);
+        this.logger.action("Tilled soil");
+        this.memory = remember(this.memory, "farm_action", "till", {
+          position: farmland.position, timestamp: Date.now()
+        }, "low");
+        return true;
+      } catch (err) {
+        this.logger.error(`Failed to till: ${err}`);
+        return false;
+      }
+    }
+
+    this.logger.action("No soil to till nearby");
+    return false;
   }
 
-  private async executePlantCrops(_bot: import("mineflayer").Bot): Promise<boolean> {
-    this.logger.action("Planting crops (seed placement pending)");
-    return true;
+  private async executePlantCrops(bot: import("mineflayer").Bot): Promise<boolean> {
+    const seeds = bot.inventory.items().find((i) => i.name.includes("seeds"));
+    if (!seeds) {
+      this.logger.action("No seeds in inventory");
+      return false;
+    }
+
+    // Find nearby farmland to plant on
+    const farmland = bot.findBlock({
+      matching: (b) => b.name === "farmland",
+      maxDistance: 6,
+    });
+
+    if (farmland) {
+      try {
+        await this.navigation.moveTo(bot, {
+          x: farmland.position.x, y: farmland.position.y, z: farmland.position.z
+        });
+        await bot.equip(seeds, "hand");
+        // Plant on top of farmland
+        const aboveFarmland = bot.blockAt({
+          x: farmland.position.x,
+          y: farmland.position.y + 1,
+          z: farmland.position.z,
+        } as never);
+        if (aboveFarmland && aboveFarmland.name === "air") {
+          await bot.placeBlock(farmland, { x: 0, y: 1, z: 0 } as never);
+          this.logger.action("Planted seeds");
+          this.memory = remember(this.memory, "farm_action", "plant", {
+            position: farmland.position, timestamp: Date.now()
+          }, "low");
+          return true;
+        }
+      } catch (err) {
+        this.logger.error(`Failed to plant: ${err}`);
+        return false;
+      }
+    }
+
+    this.logger.action("No farmland to plant on");
+    return false;
   }
 
   private async executeHarvest(bot: import("mineflayer").Bot): Promise<boolean> {
@@ -766,9 +931,7 @@ export class XykeelBot {
     const targetZ = pos.z + Math.round(Math.sin(angle) * distance);
 
     try {
-      await bot.pathfinder.goto(
-        new (await import("mineflayer-pathfinder")).goals.GoalBlock(targetX, pos.y, targetZ)
-      );
+      await this.navigation.moveTo(bot, { x: targetX, y: pos.y, z: targetZ });
 
       // Record discovered location
       this.memory = this.locationTracker.addLocation(this.memory, {

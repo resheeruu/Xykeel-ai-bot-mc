@@ -51,4 +51,27 @@ describe("Configuration", () => {
     expect(config.ai.provider).toBe("local");
     expect(config.ai.apiKey).toBe("");
   });
+
+  it("microsoft auth without email falls back to offline", () => {
+    const config = loadConfig({
+      minecraft: { host: "test", port: 25565, version: "1.21.1", username: "X", email: "", password: "", auth: "microsoft" },
+    });
+    expect(config.minecraft.auth).toBe("offline");
+  });
+
+  it("offline auth clears credentials", () => {
+    const config = loadConfig({
+      minecraft: { host: "test", port: 25565, version: "1.21.1", username: "X", email: "user@test.com", password: "secret", auth: "offline" },
+    });
+    expect(config.minecraft.email).toBe("");
+    expect(config.minecraft.password).toBe("");
+  });
+
+  it("microsoft auth keeps email when provided", () => {
+    const config = loadConfig({
+      minecraft: { host: "test", port: 25565, version: "1.21.1", username: "X", email: "user@test.com", password: "", auth: "microsoft" },
+    });
+    expect(config.minecraft.auth).toBe("microsoft");
+    expect(config.minecraft.email).toBe("user@test.com");
+  });
 });

@@ -1,4 +1,4 @@
-export type GameMode = "human" | "xykeel";
+export type GameMode = "human" | "xykeel" | "unknown";
 
 export interface SessionState {
   active: boolean;
@@ -7,6 +7,7 @@ export interface SessionState {
   lastXykeelConnect: number;
   reconnectAttempts: number;
   paused: boolean;
+  ownershipConfirmed: boolean;
 }
 
 export function createSessionState(): SessionState {
@@ -17,11 +18,13 @@ export function createSessionState(): SessionState {
     lastXykeelConnect: 0,
     reconnectAttempts: 0,
     paused: false,
+    ownershipConfirmed: false,
   };
 }
 
 export function shouldXykeelTakeOver(state: SessionState, handoffDelay: number): boolean {
   if (state.mode === "human") return false;
+  if (state.mode === "unknown" && !state.ownershipConfirmed) return false;
   if (state.paused) return false;
   if (!state.lastHumanDisconnect) return false;
   const elapsed = Date.now() - state.lastHumanDisconnect;
@@ -34,6 +37,22 @@ export function markHumanDisconnect(state: SessionState): SessionState {
     active: true,
     mode: "human",
     lastHumanDisconnect: Date.now(),
+    ownershipConfirmed: true,
+  };
+}
+
+export function markUnknown(state: SessionState): SessionState {
+  return {
+    ...state,
+    mode: "unknown",
+    ownershipConfirmed: false,
+  };
+}
+
+export function confirmOwnership(state: SessionState): SessionState {
+  return {
+    ...state,
+    ownershipConfirmed: true,
   };
 }
 
@@ -43,6 +62,7 @@ export function markXykeelConnect(state: SessionState): SessionState {
     mode: "xykeel",
     lastXykeelConnect: Date.now(),
     reconnectAttempts: 0,
+    ownershipConfirmed: true,
   };
 }
 

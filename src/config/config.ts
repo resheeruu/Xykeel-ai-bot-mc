@@ -110,5 +110,15 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
     ...(overrides.server ? { server: { ...defaults.server, ...overrides.server } } : {}),
     ...(overrides.storagePath !== undefined ? { storagePath: overrides.storagePath } : {}),
   } satisfies XykeelConfig;
+
+  // Safety: Microsoft auth requires email; strip credentials from non-Microsoft
+  if (merged.minecraft.auth === "microsoft" && !merged.minecraft.email) {
+    merged.minecraft.auth = "offline";
+  }
+  if (merged.minecraft.auth === "offline") {
+    merged.minecraft.email = "";
+    merged.minecraft.password = "";
+  }
+
   return merged;
 }

@@ -1,6 +1,7 @@
 import type { Bot } from "mineflayer";
 import type { XykeelLogger } from "../logging/logger.js";
 import type { InventoryState } from "../minecraft/inventory.js";
+import { goals } from "mineflayer-pathfinder";
 
 export interface SurvivalActions {
   eat(bot: Bot, inventory: InventoryState): Promise<boolean>;
@@ -50,20 +51,14 @@ export function createSurvivalActions(logger: XykeelLogger): SurvivalActions {
     const safePos = { x: pos.x + 10, y: pos.y, z: pos.z + 10 };
 
     try {
-      const pf = await import("mineflayer-pathfinder");
-      const pathfinderPlugin = pf.default ?? pf;
-      bot.loadPlugin(pathfinderPlugin as unknown as Parameters<Bot["loadPlugin"]>[0]);
-      const mcData = (await import("minecraft-data")).default(bot.version);
-      const Movements = (pf as unknown as { Movements: new (bot: Bot, mcData: unknown) => unknown }).Movements;
-      const goals = (pf as unknown as { goals: { GoalBlock: new (x: number, y: number, z: number) => unknown } }).goals;
-      const movements = new Movements(bot, mcData);
-      const bf = bot as unknown as { pathfinder?: { setMovements: (m: unknown) => void; setGoal: (g: unknown) => void } };
+      const bf = bot as unknown as { pathfinder?: { setGoal: (g: unknown) => void } };
       if (bf.pathfinder) {
-        bf.pathfinder.setMovements(movements);
         bf.pathfinder.setGoal(new goals.GoalBlock(safePos.x, safePos.y, safePos.z));
+        logger.survival("Retreat path set");
+        return true;
       }
-      logger.survival("Retreat path set");
-      return true;
+      logger.survival("Pathfinder not available for retreat");
+      return false;
     } catch {
       logger.survival("Pathfinder not available for retreat");
       return false;
