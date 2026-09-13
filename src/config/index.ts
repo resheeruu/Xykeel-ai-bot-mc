@@ -3,8 +3,8 @@ export type {
   XykeelConfig,
   MinecraftConfig,
   AIConfig,
+  AIProviderSlot,
   AutonomyConfig,
   LoggingConfig,
-  OwnerConfig,
   ServerConfig,
 } from "./config.js";

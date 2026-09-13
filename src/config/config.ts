@@ -12,28 +12,35 @@ export interface MinecraftConfig {
   auth: "microsoft" | "offline";
 }
 
-export interface AIConfig {
-  provider: "local" | "openai" | "ollama";
+export interface AIProviderSlot {
   apiKey: string;
   model: string;
   baseUrl: string;
+  enabled: boolean;
+}
+
+export interface AIConfig {
+  primary: string;
+  ravenEnabled: boolean;
+  ravenBaseUrl: string;
+  ravenModel: string;
+  ravenApiKey: string;
+  ravenTimeoutMs: number;
+  allowPaidProviders: boolean;
+  providers: Record<string, AIProviderSlot>;
 }
 
 export interface AutonomyConfig {
   interval: number;
-  handoffDelay: number;
   maxReconnectAttempts: number;
+  reconnectBaseDelay: number;
+  reconnectMaxDelay: number;
 }
 
 export interface LoggingConfig {
   level: string;
   output: "console" | "file" | "both";
   path: string;
-}
-
-export interface OwnerConfig {
-  uuid: string;
-  username: string;
 }
 
 export interface ServerConfig {
@@ -45,7 +52,6 @@ export interface XykeelConfig {
   ai: AIConfig;
   autonomy: AutonomyConfig;
   logging: LoggingConfig;
-  owner: OwnerConfig;
   server: ServerConfig;
   storagePath: string;
 }
@@ -61,6 +67,34 @@ function envInt(key: string, fallback: number): number {
   return isNaN(parsed) ? fallback : parsed;
 }
 
+function envBool(key: string, fallback: boolean): boolean {
+  const raw = process.env[key];
+  if (!raw) return fallback;
+  return raw.toLowerCase() === "true" || raw === "1";
+}
+
+const PROVIDER_KEYS = [
+  "openai", "anthropic", "gemini", "vertex", "groq", "deepseek", "xai",
+  "mistral", "cohere", "together", "openrouter", "huggingface", "nvidia",
+  "fireworks", "cerebras", "sambanova", "novita", "hyperbolic", "moonshot",
+  "zai", "ai21", "perplexity", "deepinfra", "nebius", "lambda", "baseten",
+  "friendli", "chutes", "featherless", "azure",
+] as const;
+
+function loadProviderSlots(): Record<string, AIProviderSlot> {
+  const slots: Record<string, AIProviderSlot> = {};
+  for (const key of PROVIDER_KEYS) {
+    const upperKey = key.toUpperCase().replace(/[^A-Z0-9]/g, "_");
+    slots[key] = {
+      apiKey: env(`AI_${upperKey}_API_KEY`),
+      model: env(`AI_${upperKey}_MODEL`),
+      baseUrl: env(`AI_${upperKey}_BASE_URL`),
+      enabled: env(`AI_${upperKey}_ENABLED`, "true") === "true",
+    };
+  }
+  return slots;
+}
+
 export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
   const defaults: XykeelConfig = {
     minecraft: {
@@ -73,27 +107,28 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
       auth: env("MC_AUTH", "offline") as "microsoft" | "offline",
     },
     ai: {
-      provider: env("AI_PROVIDER", "local") as "local" | "openai" | "ollama",
-      apiKey: env("AI_API_KEY"),
-      model: env("AI_MODEL"),
-      baseUrl: env("AI_BASE_URL"),
+      primary: env("AI_PROVIDER", ""),
+      ravenEnabled: envBool("AI_RAVEN_ENABLED", false),
+      ravenBaseUrl: env("AI_RAVEN_BASE_URL", "http://127.0.0.1:11434/v1"),
+      ravenModel: env("AI_RAVEN_MODEL"),
+      ravenApiKey: env("AI_RAVEN_API_KEY"),
+      ravenTimeoutMs: envInt("AI_RAVEN_TIMEOUT_MS", 30000),
+      allowPaidProviders: envBool("AI_ALLOW_PAID_PROVIDERS", false),
+      providers: loadProviderSlots(),
     },
     autonomy: {
       interval: envInt("AUTONOMY_INTERVAL", 30000),
-      handoffDelay: envInt("HANDOFF_DELAY", 30000),
-      maxReconnectAttempts: envInt("MAX_RECONNECT_ATTEMPTS", 5),
+      maxReconnectAttempts: envInt("MAX_RECONNECT_ATTEMPTS", 10),
+      reconnectBaseDelay: envInt("RECONNECT_BASE_DELAY", 2000),
+      reconnectMaxDelay: envInt("RECONNECT_MAX_DELAY", 60000),
     },
     logging: {
       level: env("LOG_LEVEL", "info"),
       output: env("LOG_OUTPUT", "both") as "console" | "file" | "both",
       path: env("LOG_PATH", "./data/logs"),
     },
-    owner: {
-      uuid: env("OWNER_UUID"),
-      username: env("OWNER_USERNAME"),
-    },
     server: {
-      name: env("SERVER_NAME", "lunamoon"),
+      name: env("SERVER_NAME", ""),
     },
     storagePath: env("STORAGE_PATH", "./data"),
   };
@@ -106,12 +141,10 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
     ...(overrides.ai ? { ai: { ...defaults.ai, ...overrides.ai } } : {}),
     ...(overrides.autonomy ? { autonomy: { ...defaults.autonomy, ...overrides.autonomy } } : {}),
     ...(overrides.logging ? { logging: { ...defaults.logging, ...overrides.logging } } : {}),
-    ...(overrides.owner ? { owner: { ...defaults.owner, ...overrides.owner } } : {}),
     ...(overrides.server ? { server: { ...defaults.server, ...overrides.server } } : {}),
     ...(overrides.storagePath !== undefined ? { storagePath: overrides.storagePath } : {}),
   } satisfies XykeelConfig;
 
-  // Safety: Microsoft auth requires email; strip credentials from non-Microsoft
   if (merged.minecraft.auth === "microsoft" && !merged.minecraft.email) {
     merged.minecraft.auth = "offline";
   }

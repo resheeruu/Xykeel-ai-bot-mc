@@ -16,7 +16,8 @@ export type LogCategory =
   | "memory"
   | "chat"
   | "system"
-  | "state";
+  | "state"
+  | "ai";
 
 const CATEGORY_LABELS: Record<LogCategory, string> = {
   connection: "CONNECTION",
@@ -32,6 +33,7 @@ const CATEGORY_LABELS: Record<LogCategory, string> = {
   chat: "CHAT",
   system: "SYSTEM",
   state: "STATE",
+  ai: "AI",
 };
 
 export interface XykeelLogger {
@@ -49,6 +51,7 @@ export interface XykeelLogger {
   chat(message: string, meta?: Record<string, unknown>): void;
   system(message: string, meta?: Record<string, unknown>): void;
   state(message: string, meta?: Record<string, unknown>): void;
+  ai(message: string, meta?: Record<string, unknown>): void;
   raw: winston.Logger;
 }
 
@@ -115,6 +118,7 @@ function createLogger(config: LoggingConfig): XykeelLogger {
     chat: (m, meta) => cat("chat", m, meta),
     system: (m, meta) => cat("system", m, meta),
     state: (m, meta) => cat("state", m, meta),
+    ai: (m, meta) => cat("ai", m, meta),
     raw: winstonLogger,
   };
 }

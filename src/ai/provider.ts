@@ -2,12 +2,12 @@ export interface AIProvider {
   readonly name: string;
   initialize(): Promise<void>;
   chat(prompt: string, context?: string): Promise<string>;
-  isAvailable(): boolean;
+  isAvailable(): boolean | Promise<boolean>;
   shutdown(): Promise<void>;
 }
 
 export interface AIProviderConfig {
-  provider: "local" | "openai" | "ollama";
+  provider: string;
   apiKey?: string;
   model?: string;
   baseUrl?: string;
@@ -22,7 +22,6 @@ export class LocalAIProvider implements AIProvider {
   }
 
   async chat(prompt: string, _context?: string): Promise<string> {
-    // Deterministic fallback — no AI calls, just basic heuristics
     return this.fallbackDecision(prompt);
   }
 
@@ -65,10 +64,6 @@ export function createAIProvider(config: AIProviderConfig): AIProvider {
   switch (config.provider) {
     case "local":
       return new LocalAIProvider();
-    case "openai":
-      return new LocalAIProvider(); // TODO: implement OpenAI provider
-    case "ollama":
-      return new LocalAIProvider(); // TODO: implement Ollama provider
     default:
       return new LocalAIProvider();
   }

@@ -1,76 +1,47 @@
-export type GameMode = "human" | "xykeel" | "unknown";
+export type SessionMode = "xykeel" | "disconnected";
 
 export interface SessionState {
   active: boolean;
-  mode: GameMode;
-  lastHumanDisconnect: number;
-  lastXykeelConnect: number;
+  mode: SessionMode;
+  lastConnect: number;
+  lastDisconnect: number;
   reconnectAttempts: number;
   paused: boolean;
-  ownershipConfirmed: boolean;
 }
 
 export function createSessionState(): SessionState {
   return {
     active: false,
-    mode: "human",
-    lastHumanDisconnect: 0,
-    lastXykeelConnect: 0,
+    mode: "xykeel",
+    lastConnect: 0,
+    lastDisconnect: 0,
     reconnectAttempts: 0,
     paused: false,
-    ownershipConfirmed: false,
   };
 }
 
-export function shouldXykeelTakeOver(state: SessionState, handoffDelay: number): boolean {
-  if (state.mode === "human") return false;
-  if (state.mode === "unknown" && !state.ownershipConfirmed) return false;
+export function shouldAttemptConnect(state: SessionState): boolean {
   if (state.paused) return false;
-  if (!state.lastHumanDisconnect) return false;
-  const elapsed = Date.now() - state.lastHumanDisconnect;
-  return elapsed >= handoffDelay;
+  if (state.active) return false;
+  return state.mode === "xykeel";
 }
 
-export function markHumanDisconnect(state: SessionState): SessionState {
+export function markConnect(state: SessionState): SessionState {
   return {
     ...state,
     active: true,
-    mode: "human",
-    lastHumanDisconnect: Date.now(),
-    ownershipConfirmed: true,
-  };
-}
-
-export function markUnknown(state: SessionState): SessionState {
-  return {
-    ...state,
-    mode: "unknown",
-    ownershipConfirmed: false,
-  };
-}
-
-export function confirmOwnership(state: SessionState): SessionState {
-  return {
-    ...state,
-    ownershipConfirmed: true,
-  };
-}
-
-export function markXykeelConnect(state: SessionState): SessionState {
-  return {
-    ...state,
     mode: "xykeel",
-    lastXykeelConnect: Date.now(),
+    lastConnect: Date.now(),
     reconnectAttempts: 0,
-    ownershipConfirmed: true,
   };
 }
 
-export function markXykeelDisconnect(state: SessionState): SessionState {
+export function markDisconnect(state: SessionState): SessionState {
   return {
     ...state,
     active: false,
     mode: "xykeel",
+    lastDisconnect: Date.now(),
   };
 }
 

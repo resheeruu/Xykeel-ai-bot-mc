@@ -19,9 +19,8 @@ describe("Configuration", () => {
     expect(config.minecraft.version).toBe("1.21.1");
     expect(config.minecraft.username).toBe("Xykeel");
     expect(config.minecraft.auth).toBe("offline");
-    expect(config.ai.provider).toBe("local");
+    expect(config.ai.ravenEnabled).toBe(false);
     expect(config.autonomy.interval).toBe(30000);
-    expect(config.autonomy.handoffDelay).toBe(30000);
     expect(config.logging.level).toBe("info");
   });
 
@@ -29,13 +28,13 @@ describe("Configuration", () => {
     process.env.MC_HOST = "play.example.com";
     process.env.MC_PORT = "19132";
     process.env.MC_VERSION = "1.20.4";
-    process.env.AI_PROVIDER = "ollama";
+    process.env.MC_USERNAME = "TestBot";
 
     const config = loadConfig();
     expect(config.minecraft.host).toBe("play.example.com");
     expect(config.minecraft.port).toBe(19132);
     expect(config.minecraft.version).toBe("1.20.4");
-    expect(config.ai.provider).toBe("ollama");
+    expect(config.minecraft.username).toBe("TestBot");
   });
 
   it("applies overrides", () => {
@@ -46,10 +45,18 @@ describe("Configuration", () => {
     expect(config.minecraft.port).toBe(9999);
   });
 
-  it("does not require AI API key for local provider", () => {
+  it("loads AI provider slots from env", () => {
+    process.env.AI_GROQ_API_KEY = "test-key";
+    process.env.AI_GROQ_MODEL = "llama-3.1-8b-instant";
     const config = loadConfig();
-    expect(config.ai.provider).toBe("local");
-    expect(config.ai.apiKey).toBe("");
+    expect(config.ai.providers.groq.apiKey).toBe("test-key");
+    expect(config.ai.providers.groq.model).toBe("llama-3.1-8b-instant");
+  });
+
+  it("disabled providers without API keys are config_error", () => {
+    const config = loadConfig();
+    // Providers without API keys should have empty keys
+    expect(config.ai.providers.openai.apiKey).toBe("");
   });
 
   it("microsoft auth without email falls back to offline", () => {
@@ -73,5 +80,26 @@ describe("Configuration", () => {
     });
     expect(config.minecraft.auth).toBe("microsoft");
     expect(config.minecraft.email).toBe("user@test.com");
+  });
+
+  it("paid providers disabled by default", () => {
+    const config = loadConfig();
+    expect(config.ai.allowPaidProviders).toBe(false);
+  });
+
+  it("raven config loads from env", () => {
+    process.env.AI_RAVEN_ENABLED = "true";
+    process.env.AI_RAVEN_BASE_URL = "http://localhost:8080/v1";
+    process.env.AI_RAVEN_MODEL = "my-model";
+    const config = loadConfig();
+    expect(config.ai.ravenEnabled).toBe(true);
+    expect(config.ai.ravenBaseUrl).toBe("http://localhost:8080/v1");
+    expect(config.ai.ravenModel).toBe("my-model");
+  });
+
+  it("no owner config required", () => {
+    const config = loadConfig();
+    // OwnerConfig no longer exists - Xykeel is independent
+    expect(config).not.toHaveProperty("owner");
   });
 });

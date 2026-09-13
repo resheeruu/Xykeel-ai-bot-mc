@@ -1,11 +1,10 @@
 export {
   createSessionState,
-  shouldXykeelTakeOver,
-  markHumanDisconnect,
-  markXykeelConnect,
-  markXykeelDisconnect,
+  shouldAttemptConnect,
+  markConnect,
+  markDisconnect,
   incrementReconnect,
   pause,
   resume,
 } from "./session.js";
-export type { SessionState, GameMode } from "./session.js";
+export type { SessionState, SessionMode } from "./session.js";

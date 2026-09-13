@@ -2,15 +2,16 @@ import { loadConfig, type XykeelConfig } from "./config/config.js";
 import { createLogger, type XykeelLogger } from "./logging/logger.js";
 import {
   createSessionState,
-  shouldXykeelTakeOver,
-  markXykeelConnect,
-  markXykeelDisconnect,
+  shouldAttemptConnect,
+  markConnect,
+  markDisconnect,
   incrementReconnect,
   type SessionState,
 } from "./handoff/session.js";
 import { createStore, saveStore, loadStore, remember, type MemoryStore } from "./memory/store.js";
 import { createGoal, prioritizeGoals, completeGoal, type Goal } from "./goals/goal.js";
-import { createAIProvider, type AIProvider } from "./ai/provider.js";
+import { LocalAIProvider } from "./ai/provider.js";
+import { createMultiProviderRouter, type MultiProviderRouter } from "./ai/multi-router.js";
 import { evaluateHealth, assessRisk } from "./safety/health.js";
 import { createMinecraftClient, type MinecraftClient } from "./minecraft/client.js";
 import { createPlayerTracker, type PlayerTracker } from "./minecraft/players.js";
@@ -24,18 +25,17 @@ import { createHomeSystem } from "./world/home.js";
 import { createFarmSystem } from "./world/farm.js";
 import { createLocationTracker } from "./world/locations.js";
 import { createRelationshipSystem } from "./relationships/system.js";
+import { createIdentitySystem, type IdentitySystem, type IdentityProfile } from "./identity/profile.js";
+import { buildContext, summarizeInventory, type BotContextForAI } from "./ai/context-builder.js";
 
 const ACTION_TIMEOUT_MS = 45_000;
 
 export type BotStatus =
   | "DISCONNECTED"
-  | "HUMAN_ACTIVE"
   | "XYKEEL_ACTIVE"
-  | "TRANSITIONING_TO_XYKEEL"
-  | "TRANSITIONING_TO_HUMAN"
+  | "CONNECTING"
   | "STOPPING"
-  | "ERROR"
-  | "WAITING_HANDOFF";
+  | "ERROR";
 
 export interface XykeelBotConfig extends XykeelConfig {}
 
@@ -52,10 +52,13 @@ export class XykeelBot {
   private inventoryTracker: InventoryTracker;
 
   // AI & Autonomy
-  private ai: AIProvider;
+  private aiRouter: MultiProviderRouter;
   private planner: Planner;
   private survivalActions: SurvivalActions;
   private navigation: NavigationSystem;
+
+  // Identity
+  private identity: IdentitySystem;
 
   // Systems
   private homeSystem: ReturnType<typeof createHomeSystem>;
@@ -76,7 +79,6 @@ export class XykeelBot {
 
   // Timers
   private autonomyTimer: ReturnType<typeof setInterval> | null = null;
-  private handoffTimer: ReturnType<typeof setTimeout> | null = null;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
   private statusTimer: ReturnType<typeof setInterval> | null = null;
 
@@ -100,11 +102,13 @@ export class XykeelBot {
     this.worldTracker = createWorldTracker(this.logger);
     this.inventoryTracker = createInventoryTracker(this.logger);
 
-    this.ai = createAIProvider(this.config.ai);
+    const localFallback = new LocalAIProvider();
+    this.aiRouter = createMultiProviderRouter(this.config, this.logger, localFallback);
     this.planner = createPlanner();
     this.survivalActions = createSurvivalActions(this.logger);
     this.navigation = createNavigation(this.logger);
 
+    this.identity = createIdentitySystem(this.logger);
     this.homeSystem = createHomeSystem(this.logger);
     this.farmSystem = createFarmSystem(this.logger);
     this.locationTracker = createLocationTracker(this.logger);
@@ -123,6 +127,7 @@ export class XykeelBot {
     this.logger.connection(`Server: ${this.config.minecraft.host}:${this.config.minecraft.port}`);
     this.logger.connection(`Version: ${this.config.minecraft.version}`);
     this.logger.connection(`Auth: ${this.config.minecraft.auth}`);
+    this.logger.connection(`Username: ${this.config.minecraft.username}`);
 
     // Load persistent memory
     this.memory = loadStore(this.memoryPath);
@@ -133,19 +138,17 @@ export class XykeelBot {
     // Load persisted goals from memory
     this.loadPersistedGoals();
 
-    // Initialize AI
-    await this.ai.initialize();
-    this.logger.system(`AI: ${this.ai.name}`);
+    // Initialize AI router
+    this.aiRouter.initialize();
+    this.logger.system(`AI Router: ${this.aiRouter.name}`);
 
     this.running = true;
 
     // Start status reporter
     this.startStatusReporter();
 
-    // Start handoff check
-    this.startHandoffCheck();
-
-    this.logger.system("Xykeel ready. Waiting for handoff trigger...");
+    // Auto-connect as independent Minecraft player
+    this.connectAsXykeel();
   }
 
   async stop(): Promise<void> {
@@ -168,37 +171,22 @@ export class XykeelBot {
       this.client.disconnect();
     }
 
-    await this.ai.shutdown();
+    // Persist AI provider state
+    await this.aiRouter.shutdown();
     this.status = "DISCONNECTED";
     this.logger.system("Xykeel stopped.");
   }
 
   // ========================
-  // HANDOFF
+  // CONNECTION (Independent Lifecycle)
   // ========================
 
-  private startHandoffCheck(): void {
-    this.handoffTimer = setInterval(() => {
-      this.checkHandoff();
-    }, 5000);
-  }
-
-  private checkHandoff(): void {
-    if (!this.running) return;
-
-    // If not connected and should take over
-    if (!this.client.connected && this.session.mode !== "human") {
-      if (shouldXykeelTakeOver(this.session, this.config.autonomy.handoffDelay)) {
-        this.connectAsXykeel();
-      }
-    }
-  }
-
   private async connectAsXykeel(): Promise<void> {
-    if (this.status === "TRANSITIONING_TO_XYKEEL" || this.status === "XYKEEL_ACTIVE") return;
+    if (this.status === "CONNECTING" || this.status === "XYKEEL_ACTIVE") return;
+    if (!shouldAttemptConnect(this.session)) return;
 
-    this.status = "TRANSITIONING_TO_XYKEEL";
-    this.logger.handoff("Transitioning to XYKEEL control");
+    this.status = "CONNECTING";
+    this.logger.system("Connecting as independent player...");
 
     try {
       const bot = await this.client.connect();
@@ -206,9 +194,9 @@ export class XykeelBot {
       // Wire all events
       this.wireBotEvents(bot);
 
-      this.session = markXykeelConnect(this.session);
+      this.session = markConnect(this.session);
       this.status = "XYKEEL_ACTIVE";
-      this.logger.handoff("XYKEEL active — autonomous mode engaged");
+      this.logger.system(`XYKEEL active — connected as ${this.config.minecraft.username}`);
 
       // Start autonomy
       this.startAutonomyLoop();
@@ -217,6 +205,7 @@ export class XykeelBot {
       this.memory = remember(this.memory, "event", "xykeel_connect", {
         timestamp: Date.now(),
         position: this.worldTracker.getState().position,
+        username: this.config.minecraft.username,
       }, "high");
     } catch (err) {
       this.logger.error(`Connection failed: ${err}`);
@@ -229,8 +218,10 @@ export class XykeelBot {
         return;
       }
 
-      // Exponential backoff
-      const delay = Math.min(30000, 2000 * Math.pow(2, this.session.reconnectAttempts));
+      const delay = Math.min(
+        this.config.autonomy.reconnectMaxDelay,
+        this.config.autonomy.reconnectBaseDelay * Math.pow(2, this.session.reconnectAttempts)
+      );
       this.logger.system(`Retrying in ${delay}ms (attempt ${this.session.reconnectAttempts})`);
       this.reconnectTimer = setTimeout(() => {
         this.connectAsXykeel();
@@ -309,7 +300,21 @@ export class XykeelBot {
     this.stopAutonomyLoop();
     this.saveState();
     this.status = "DISCONNECTED";
-    this.session = markXykeelDisconnect(this.session);
+    this.session = markDisconnect(this.session);
+
+    // Auto-reconnect with exponential backoff
+    if (this.running && shouldAttemptConnect(this.session)) {
+      this.session = incrementReconnect(this.session);
+      if (this.session.reconnectAttempts < this.config.autonomy.maxReconnectAttempts) {
+        const delay = Math.min(
+          this.config.autonomy.reconnectMaxDelay,
+          this.config.autonomy.reconnectBaseDelay * Math.pow(2, this.session.reconnectAttempts)
+        );
+        this.reconnectTimer = setTimeout(() => {
+          this.connectAsXykeel();
+        }, delay);
+      }
+    }
   }
 
   private handleSurvivalEmergency(): void {
@@ -1032,9 +1037,11 @@ export class XykeelBot {
   // ========================
 
   private saveState(): void {
-    saveStore(this.memory, this.memoryPath);
+    // Persist identity profile
+    const profile = this.identity.getProfile(this.memory);
+    this.memory = this.identity.updateProfile(this.memory, profile);
 
-    // Also save goals
+    // Save goals and state
     this.memory = remember(this.memory, "state", "goals", this.goals, "high");
     this.memory = remember(this.memory, "state", "health", this.health, "medium");
     this.memory = remember(this.memory, "state", "session", this.session, "high");
@@ -1123,6 +1130,7 @@ export class XykeelBot {
     return {
       session: this.status,
       minecraft: this.client.connected ? "CONNECTED" : "DISCONNECTED",
+      username: this.config.minecraft.username,
       health: this.health.health,
       hunger: this.health.hunger,
       position: pos,
@@ -1134,6 +1142,8 @@ export class XykeelBot {
       goalsCompleted: this.goals.filter((g) => g.status === "completed").length,
       memoryEntries: Object.keys(this.memory.entries).length,
       players: this.playerTracker.getPlayers().map((p) => p.username),
+      aiMetrics: this.aiRouter.getMetrics(),
+      identity: this.identity.getProfile(this.memory),
     };
   }
 
@@ -1169,6 +1179,55 @@ export class XykeelBot {
   }
 
   // ========================
+  // IDENTITY
+  // ========================
+
+  getIdentity(): IdentityProfile {
+    return this.identity.getProfile(this.memory);
+  }
+
+  updateIdentity(updates: Partial<IdentityProfile>): void {
+    this.memory = this.identity.updateProfile(this.memory, updates);
+    this.logger.system("Identity updated");
+  }
+
+  // ========================
+  // AI ROUTER
+  // ========================
+
+  getAIRouter(): MultiProviderRouter {
+    return this.aiRouter;
+  }
+
+  async askAI(prompt: string): Promise<string> {
+    const bot = this.client.bot;
+    const world = this.worldTracker.getState();
+
+    const ctx: BotContextForAI = {
+      username: this.config.minecraft.username,
+      health: this.health.health,
+      hunger: this.health.hunger,
+      position: world.position,
+      biome: world.biome ?? null,
+      isDaytime: world.isDaytime,
+      currentGoal: this.goals.filter((g) => g.status === "pending" || g.status === "active")[0] ?? null,
+      currentPlan: this.currentPlan,
+      currentActivity: this.currentActivity,
+      inventorySummary: summarizeInventory(
+        bot ? bot.inventory.items().map((i) => ({ name: i.name, count: i.count })) : []
+      ),
+      nearbyPlayers: this.playerTracker.getPlayers().map((p) => p.username),
+      dangerLevel: world.nearbyEntities.some((e) => e.type === "hostile" && e.distance < 10)
+        ? "danger" : "safe",
+      recentEvents: [],
+      identity: this.identity.getProfile(this.memory),
+    };
+
+    const context = buildContext(ctx);
+    return this.aiRouter.chat(prompt, context);
+  }
+
+  // ========================
   // CLEANUP
   // ========================
 
@@ -1176,10 +1235,6 @@ export class XykeelBot {
     if (this.autonomyTimer) {
       clearInterval(this.autonomyTimer);
       this.autonomyTimer = null;
-    }
-    if (this.handoffTimer) {
-      clearInterval(this.handoffTimer);
-      this.handoffTimer = null;
     }
     if (this.reconnectTimer) {
       clearTimeout(this.reconnectTimer);
