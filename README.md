@@ -68,17 +68,26 @@ cp .env.example .env
 | `MC_VERSION` | Minecraft version | `1.21.1` |
 | `MC_USERNAME` | In-game username | `Xykeel` |
 | `MC_AUTH` | Auth type: `microsoft` or `offline` | `offline` |
-| `MC_EMAIL` | Microsoft account email | — |
-| `MC_PASSWORD` | Account password | — |
-| `OWNER_UUID` | Your Minecraft UUID | — |
-| `OWNER_USERNAME` | Your Minecraft username | — |
-| `AI_PROVIDER` | `local`, `openai`, or `ollama` | `local` |
-| `AI_API_KEY` | API key for remote AI providers | — |
-| `AI_MODEL` | Model name for AI provider | — |
+| `MC_EMAIL` | Microsoft account email (required if `MC_AUTH=microsoft`) | — |
+| `AI_ALLOW_PAID_PROVIDERS` | Enable paid AI providers | `false` |
+| `AI_RAVEN_ENABLED` | Enable Raven AI fallback | `false` |
+| `AI_RAVEN_BASE_URL` | Raven AI endpoint | — |
+| `AI_RAVEN_MODEL` | Raven model name | — |
+| `AI_RAVEN_API_KEY` | Raven API key | — |
+| `AI_<PROVIDER>_ENABLED` | Enable specific provider slot | `true` |
+| `AI_<PROVIDER>_API_KEY` | Provider API key | — |
+| `AI_<PROVIDER>_MODEL` | Provider model | varies |
+| `AI_<PROVIDER>_BASE_URL` | Provider base URL | varies |
 | `AUTONOMY_INTERVAL` | Decision loop interval (ms) | `30000` |
-| `HANDOFF_DELAY` | Delay before Xykeel connects (ms) | `30000` |
+| `MAX_RECONNECT_ATTEMPTS` | Max reconnect attempts | `10` |
+| `RECONNECT_BASE_DELAY` | Base reconnect delay (ms) | `2000` |
+| `RECONNECT_MAX_DELAY` | Max reconnect delay (ms) | `60000` |
 | `LOG_LEVEL` | `error`, `warn`, `info`, `debug` | `info` |
+| `LOG_OUTPUT` | `console`, `file`, or `both` | `both` |
+| `LOG_PATH` | Log file path | `./data/logs` |
 | `STORAGE_PATH` | Persistent data directory | `./data` |
+| `SERVER_NAME` | Optional server name identifier | — |
+| `HEALTH_PORT` | Health check HTTP port (0 to disable) | `3000` |
 
 ### Development
 
@@ -110,21 +119,18 @@ Goals are split into two layers:
 - **Player requests** — Things you ask Xykeel to do (capped priority)
 - **Xykeel's own goals** — His personal projects and ambitions
 
-## One-Account Handoff
+## Independent Identity
 
-There is only ONE Minecraft account. The handoff works like this:
+Xykeel runs as an independent Minecraft player with his own account:
 
-1. You disconnect from the server
-2. After a configurable delay, Xykeel detects you're offline
-3. Xykeel connects and restores his persistent state
-4. Xykeel plays autonomously
-5. When you connect, Xykeel detects your session
-6. Xykeel saves state, stops activities, and disconnects
-7. You resume control
+1. Xykeel connects with his own username (`MC_USERNAME`)
+2. Xykeel has his own persistent identity, memories, goals, and projects
+3. Xykeel makes autonomous decisions about what to do
+4. Xykeel is not a servant — he's a resident of the Minecraft world
 
 ## Server Compatibility
 
-**First target:** Lunamoon SMP
+**First target:** Any Minecraft server that permits automated clients
 
 Xykeel uses a server adapter system so he can work with different servers. Server-specific configuration (economy, shops, claims, commands) is handled through config.
 
@@ -186,6 +192,82 @@ Phase 9 wired all systems together:
 2. Verify server Minecraft version
 3. Configure `.env` with real server details
 4. Test on a local/creative server first
+
+## Raven Host Deployment
+
+### 1. Clone/Import
+
+```bash
+git clone <your-repository-url>
+cd Xykeel-ai-bot-mc
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Build
+
+```bash
+npm run build
+```
+
+### 4. Configure Environment Variables
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and set at minimum:
+
+| Variable | Description |
+|---|---|
+| `MC_HOST` | Reachable Minecraft server address |
+| `MC_PORT` | Server port (default: `25565`) |
+| `MC_VERSION` | Minecraft version (default: `1.21.1`) |
+| `MC_USERNAME` | In-game username (default: `Xykeel`) |
+| `MC_AUTH` | `offline` or `microsoft` (requires `MC_EMAIL`) |
+| `HEALTH_PORT` | Health check port (default: `3000`, set to `0` to disable) |
+
+**Important:** `MC_HOST=127.0.0.1` only works when the Minecraft server runs on the same machine/container. For a separately hosted server, use its actual reachable address.
+
+### 5. Start
+
+```bash
+npm start
+```
+
+### 6. Persistent Storage
+
+Xykeel persists all state to the `data/` directory (configurable via `STORAGE_PATH`):
+
+- `data/memory.json` — identity, memories, goals, relationships, discoveries, business history
+- `data/provider-quota.json` — AI provider quota/cooldown state
+- `data/logs/` — application logs
+
+**Ephemeral filesystems:** If Raven Host uses an ephemeral filesystem, all persistent data will be lost on process restart. Mount a persistent volume to `data/` if long-term memory is required.
+
+### 7. Minecraft Server
+
+Provide the legitimate Minecraft server address in `MC_HOST`. Ensure the server permits automated clients before deploying.
+
+### 8. Check Logs
+
+Look for these log lines to confirm successful startup:
+
+```
+info: [SYSTEM] Health server listening on port 3000
+info: [SYSTEM] === Xykeel Bot Starting ===
+info: [CONNECTION] Connected as Xykeel
+```
+
+If Minecraft is unreachable, Xykeel logs the connection failure and retries with exponential backoff. It does not crash-loop.
+
+### Health Endpoint
+
+A minimal HTTP health endpoint is available at `GET /health` on the configured `HEALTH_PORT`. It returns JSON with bot status, identity, and AI metrics. No privileged controls are exposed.
 
 ## License
 

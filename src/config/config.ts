@@ -45,6 +45,7 @@ export interface LoggingConfig {
 
 export interface ServerConfig {
   name: string;
+  healthPort: number;
 }
 
 export interface XykeelConfig {
@@ -129,6 +130,7 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
     },
     server: {
       name: env("SERVER_NAME", ""),
+      healthPort: envInt("HEALTH_PORT", 3000),
     },
     storagePath: env("STORAGE_PATH", "./data"),
   };

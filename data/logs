@@ -4536,3 +4536,641 @@
 {"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T12:07:25.754Z"}
 {"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T12:07:25.843Z"}
 {"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T12:07:25.845Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:37.490Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:37.400Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:37.497Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:37.497Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:37.497Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:37.498Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:37.499Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:37.510Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:37.511Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:37.512Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:37.512Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:37.515Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:37.515Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.191Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.192Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.226Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.226Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.226Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.227Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.195Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.195Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.195Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.195Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.195Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.196Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.196Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.196Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.197Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.197Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.197Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.197Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.245Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.245Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.245Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.245Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:37.406Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:37.411Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:37.411Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:37.411Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:37.420Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:37.430Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:37.433Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:37.434Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:37.441Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:37.442Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:37.442Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.192Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.194Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.259Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.259Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.260Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.263Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.197Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.198Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.198Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.198Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.198Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.198Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.209Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.209Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.209Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.209Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.214Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.215Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.284Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.284Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.284Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.284Z"}
+{"category":"goal","id":"09bbada5-40cf-4860-a583-f9338e385a8d","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T18:24:38.305Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.306Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.307Z"}
+{"category":"goal","id":"ddb0d393-b555-4ba2-881d-432e4ff692b4","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T18:24:38.328Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.313Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.313Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.313Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.314Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.314Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.314Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.314Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.315Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.315Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.315Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.315Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.315Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.330Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.331Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.337Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.337Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.337Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.337Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.337Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.338Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.338Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.339Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.360Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.362Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.362Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.362Z"}
+{"category":"goal","id":"27ab343e-94fa-4500-bd12-13201fa8affa","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T18:24:38.422Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.423Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.423Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.426Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.426Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.427Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.428Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.441Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.441Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.441Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.441Z"}
+{"category":"goal","id":"5d754c62-288d-498d-9316-7f23e15ce4b5","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T18:24:38.449Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.450Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.451Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.458Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.458Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.458Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.458Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.458Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.459Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.488Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.488Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.488Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.488Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.633Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.634Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.638Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.638Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.638Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.638Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.638Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.639Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.639Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.639Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.639Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.639Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.640Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.640Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.657Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.658Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.659Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.659Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.673Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.674Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.679Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.679Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.679Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.680Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.680Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.680Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.680Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.680Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.681Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.681Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.681Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.681Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.719Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.720Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.720Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.720Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.746Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.747Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.750Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.751Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.751Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.751Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.751Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.751Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.752Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.752Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.752Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.752Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.753Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.753Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.773Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.773Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.773Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.773Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.795Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.796Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.802Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.803Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.803Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.803Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.804Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.804Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.804Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.805Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.805Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.805Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.805Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.806Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.857Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.857Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.857Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.857Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.865Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.866Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.870Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.870Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.871Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.871Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.871Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.872Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.872Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.872Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.873Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.873Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.873Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.873Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.890Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.891Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.891Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.891Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.918Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.921Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.924Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.925Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.925Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.925Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.925Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.925Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.926Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.952Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:38.952Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.952Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:38.953Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.980Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:38.981Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:38.984Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:38.985Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:38.985Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:38.985Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:38.985Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:38.986Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:38.986Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:38.986Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:38.986Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:38.987Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:38.987Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:38.987Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:39.012Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:39.012Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:39.012Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:39.013Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:39.045Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:39.048Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:39.054Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:39.054Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:39.054Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:39.054Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:39.055Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:39.055Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:39.055Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:39.056Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:39.056Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:39.056Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:39.057Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:39.057Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:39.081Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:39.081Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:39.081Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:39.081Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:39.097Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:39.098Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:24:39.169Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:24:39.185Z"}
+{"category":"system","level":"info","message":"Health server listening on port 3000","service":"xykeel","timestamp":"2026-09-13T18:24:57.634Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:24:57.638Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:24:57.639Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:24:57.639Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:24:57.639Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:24:57.640Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:24:57.641Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:24:57.646Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:24:57.647Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:24:57.648Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:24:57.648Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:24:57.649Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:24:57.649Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:58.063Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:24:58.063Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:24:58.064Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:24:58.064Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:02.066Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:02.066Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:02.084Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:02.084Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:02.084Z"}
+{"category":"system","level":"info","message":"Retrying in 8000ms (attempt 2)","service":"xykeel","timestamp":"2026-09-13T18:25:02.084Z"}
+{"category":"system","level":"info","message":"Received SIGTERM, shutting down...","service":"xykeel","timestamp":"2026-09-13T18:25:04.433Z"}
+{"category":"system","level":"info","message":"Health server listening on port 3000","service":"xykeel","timestamp":"2026-09-13T18:25:17.498Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:17.501Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:17.502Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:17.502Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:17.503Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:17.503Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:17.504Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:17.509Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:17.510Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:17.511Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:17.511Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:17.512Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:17.513Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:17.931Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:17.932Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:17.932Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:17.932Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:21.933Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:21.934Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:21.954Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:21.955Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:21.955Z"}
+{"category":"system","level":"info","message":"Retrying in 8000ms (attempt 2)","service":"xykeel","timestamp":"2026-09-13T18:25:21.955Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.270Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.273Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:27.274Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:27.274Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:27.274Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:27.275Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:27.281Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:27.282Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:27.283Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:27.283Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:27.284Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:27.285Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.722Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:27.724Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.754Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:27.755Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.756Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:27.756Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.728Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.728Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:27.729Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:27.729Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:27.729Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:27.729Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:27.730Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:27.730Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:27.730Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:27.730Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:27.731Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:27.731Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.770Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:27.770Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.770Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:27.770Z"}
+{"category":"goal","id":"11a63720-dfc9-477d-8b08-4324e284f347","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T18:25:27.837Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.838Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:27.840Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.844Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.845Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:27.845Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:27.845Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:27.845Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:27.845Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:27.846Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:27.846Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:27.846Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:27.846Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:27.846Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:27.847Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.869Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:27.869Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.870Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:27.870Z"}
+{"category":"goal","id":"8f7515ff-8418-45ed-8b4c-66e6348537f1","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T18:25:27.958Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.960Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:27.963Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:27.966Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.966Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:27.966Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:27.966Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:27.967Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:27.967Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:27.967Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:27.967Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:27.967Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:27.968Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:27.968Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:27.968Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.985Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:27.985Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:27.986Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:27.986Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.175Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:28.176Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.180Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.181Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:28.181Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:28.181Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:28.181Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:28.181Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:28.182Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.202Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:28.203Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.203Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:28.205Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.288Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:28.290Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.294Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.295Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:28.295Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:28.295Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:28.295Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:28.296Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:28.296Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:28.297Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:28.298Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:28.298Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:28.298Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:28.298Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.328Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:28.328Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.328Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:28.329Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.414Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:28.416Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.420Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.421Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:28.421Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:28.421Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:28.421Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:28.421Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:28.422Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.448Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:28.448Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.449Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:28.449Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.530Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:28.533Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.537Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.538Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:25:28.538Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:25:28.538Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:25:28.538Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:25:28.539Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:25:28.539Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:25:28.540Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:25:28.540Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:25:28.540Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:28.540Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:28.541Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.560Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:28.561Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:28.561Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:25:28.561Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:25:28.649Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:25:28.656Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:25:29.956Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:25:29.956Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:29.973Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:25:29.974Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:25:29.974Z"}
+{"category":"system","level":"info","message":"Retrying in 16000ms (attempt 3)","service":"xykeel","timestamp":"2026-09-13T18:25:29.974Z"}
+{"category":"system","level":"info","message":"Received SIGTERM, shutting down...","service":"xykeel","timestamp":"2026-09-13T18:25:31.419Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:48.641Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:48.644Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:48.644Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:48.644Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:48.645Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:48.646Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:48.650Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:48.652Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:48.653Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:48.654Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:48.655Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:48.655Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.070Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.072Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.097Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.098Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.098Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.098Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.075Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.076Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.076Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.076Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.076Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.076Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.077Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.077Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.077Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.077Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.077Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.078Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.109Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.109Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.109Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.109Z"}
+{"category":"goal","id":"051a5313-bf91-4f41-acea-ed8c950ec7d6","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T18:26:49.182Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.183Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.184Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.187Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.187Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.187Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.187Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.187Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.188Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.202Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.203Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.203Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.203Z"}
+{"category":"goal","id":"6f9c0bd3-fb62-4d0d-9da1-b5386e298e21","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T18:26:49.295Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.296Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.297Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.300Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.300Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.300Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.300Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.301Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.302Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.316Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.316Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.316Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.316Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.506Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.507Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.510Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.511Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.512Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.512Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.512Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.512Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.512Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.527Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.527Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.527Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.527Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.616Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.619Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.624Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.625Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.625Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.625Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.625Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.625Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.626Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.626Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.626Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.626Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.626Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.627Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.646Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.646Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.647Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.647Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.734Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.735Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.738Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.738Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.738Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.738Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.739Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.740Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.740Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.756Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.756Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.756Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.756Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.846Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.848Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.851Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.852Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T18:26:49.852Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T18:26:49.854Z"}
+{"category":"connection","level":"info","message":"Username: Xykeel","service":"xykeel","timestamp":"2026-09-13T18:26:49.854Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T18:26:49.854Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T18:26:49.854Z"}
+{"category":"ai","level":"info","message":"Provider quota state restored","service":"xykeel","timestamp":"2026-09-13T18:26:49.855Z"}
+{"category":"ai","level":"info","message":"AI Router initialized: 0 providers configured, 0 available","service":"xykeel","timestamp":"2026-09-13T18:26:49.855Z"}
+{"category":"system","level":"info","message":"AI Router: multi-provider-router","service":"xykeel","timestamp":"2026-09-13T18:26:49.855Z"}
+{"category":"system","level":"info","message":"Connecting as independent player...","service":"xykeel","timestamp":"2026-09-13T18:26:49.855Z"}
+{"category":"connection","level":"info","message":"Connecting to localhost:25565...","service":"xykeel","timestamp":"2026-09-13T18:26:49.855Z"}
+{"category":"error","level":"info","message":"Connection error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.870Z"}
+{"category":"disconnection","level":"info","message":"Disconnected: socketClosed","service":"xykeel","timestamp":"2026-09-13T18:26:49.870Z"}
+{"category":"error","level":"info","message":"Connection failed: Error: connect ECONNREFUSED 127.0.0.1:25565","service":"xykeel","timestamp":"2026-09-13T18:26:49.870Z"}
+{"category":"system","level":"info","message":"Retrying in 4000ms (attempt 1)","service":"xykeel","timestamp":"2026-09-13T18:26:49.871Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T18:26:49.964Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T18:26:49.966Z"}
