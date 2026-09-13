@@ -151,7 +151,7 @@ Xykeel evaluates risk before actions:
 - Memory persistence and pruning
 - Safety health checks and risk assessment
 - AI provider abstraction
-- Core Xykeel lifecycle
+- Core Xykeel lifecycle (XykeelBot orchestrator)
 - Minecraft connection, chat, world, inventory tracking
 - Navigation and survival actions
 - Autonomous planner
@@ -169,8 +169,23 @@ Xykeel evaluates risk before actions:
 **Phase 6: Complete** — Business system with transactions
 **Phase 7: Complete** — Relationship system with trust/sentiment
 **Phase 8: Complete** — Handoff state machine integrated
+**Phase 9: Complete** — Live Minecraft integration
 
-**Next:** Phase 9 — Long-running deployment, connect all systems to live Minecraft
+Phase 9 wired all systems together:
+- XykeelBot orchestrator connects Minecraft client to all subsystems
+- Real health/hunger/state drives survival priority
+- Chat events feed relationship system
+- Inventory state drives gathering goals
+- Memory records real events (mining, farming, exploration)
+- Handoff manages session transitions
+- Status reporter logs runtime state every 60 seconds
+- Graceful shutdown saves all state
+
+**Before live server testing:**
+1. Verify target server permits automated clients
+2. Verify server Minecraft version
+3. Configure `.env` with real server details
+4. Test on a local/creative server first
 
 ## License
 

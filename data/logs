@@ -116,3 +116,114 @@
 {"category":"system","level":"info","message":"Xykeel shutting down...","service":"xykeel","timestamp":"2026-09-13T08:15:09.830Z"}
 {"category":"memory","level":"info","message":"Memory saved","service":"xykeel","timestamp":"2026-09-13T08:15:09.831Z"}
 {"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:15:09.832Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:50:15.824Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:50:15.830Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:50:15.830Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:50:15.831Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:50:15.835Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:50:15.846Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:50:15.851Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:50:15.854Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:50:16.090Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.387Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.434Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.473Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.450Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.462Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:53:27.394Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:53:27.395Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:53:27.396Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:53:27.401Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:53:27.414Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:53:27.416Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:53:27.418Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.421Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:53:27.423Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:53:27.474Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:53:27.474Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:53:27.475Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:53:27.475Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:53:27.475Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:53:27.476Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:53:27.476Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:53:27.434Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:53:27.435Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:53:27.435Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:53:27.436Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:53:27.438Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:53:27.439Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:53:27.440Z"}
+{"category":"goal","id":"df7d99b0-8d69-4de8-a0c2-13bfc3394e40","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T08:53:27.442Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.443Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:53:27.443Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:53:27.451Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:53:27.451Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:53:27.451Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:53:27.452Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:53:27.452Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:53:27.453Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:53:27.454Z"}
+{"category":"goal","id":"0dca0679-71e7-4bc3-911d-a86efdf3c52c","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T08:53:27.455Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.456Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:53:27.457Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:53:27.463Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:53:27.463Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:53:27.463Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:53:27.464Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:53:27.465Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:53:27.465Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:53:27.466Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:53:27.467Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:53:27.468Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.756Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.785Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.794Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.815Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Starting ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.805Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:54:26.761Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:54:26.761Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:54:26.761Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:54:26.765Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:54:26.774Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:54:26.775Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:54:26.776Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.779Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:54:26.781Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:54:26.786Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:54:26.786Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:54:26.786Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:54:26.787Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:54:26.787Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:54:26.788Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:54:26.788Z"}
+{"category":"goal","id":"c33bc2dc-d05c-4f6d-9c2a-42699e663781","level":"info","message":"New goal: Build a secret tunnel","service":"xykeel","timestamp":"2026-09-13T08:54:26.789Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.790Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:54:26.790Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:54:26.795Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:54:26.795Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:54:26.795Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:54:26.796Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:54:26.796Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:54:26.797Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:54:26.797Z"}
+{"category":"goal","id":"8c3ecf03-ef26-41e5-a6cb-ad7c5f0cf331","level":"info","message":"Player request: Give me all your diamonds","service":"xykeel","timestamp":"2026-09-13T08:54:26.798Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.798Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:54:26.799Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:54:26.817Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:54:26.817Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:54:26.817Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:54:26.817Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:54:26.818Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:54:26.818Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:54:26.818Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.821Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:54:26.821Z"}
+{"category":"connection","level":"info","message":"Server: localhost:25565","service":"xykeel","timestamp":"2026-09-13T08:54:26.807Z"}
+{"category":"connection","level":"info","message":"Version: 1.21.1","service":"xykeel","timestamp":"2026-09-13T08:54:26.807Z"}
+{"category":"connection","level":"info","message":"Auth: offline","service":"xykeel","timestamp":"2026-09-13T08:54:26.807Z"}
+{"category":"memory","entries":0,"level":"info","message":"Memory loaded","service":"xykeel","timestamp":"2026-09-13T08:54:26.808Z"}
+{"category":"goal","level":"info","message":"Initialized 7 core goals","service":"xykeel","timestamp":"2026-09-13T08:54:26.809Z"}
+{"category":"system","level":"info","message":"AI: local","service":"xykeel","timestamp":"2026-09-13T08:54:26.809Z"}
+{"category":"system","level":"info","message":"Xykeel ready. Waiting for handoff trigger...","service":"xykeel","timestamp":"2026-09-13T08:54:26.809Z"}
+{"category":"system","level":"info","message":"=== Xykeel Bot Stopping ===","service":"xykeel","timestamp":"2026-09-13T08:54:26.810Z"}
+{"category":"system","level":"info","message":"Xykeel stopped.","service":"xykeel","timestamp":"2026-09-13T08:54:26.811Z"}

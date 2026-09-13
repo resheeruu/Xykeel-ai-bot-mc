@@ -5,12 +5,12 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node node_modules/typescript/bin/tsc",
     "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "lint": "tsc --noEmit"
+    "dev": "node --experimental-vm-modules node_modules/tsx/tsx.mjs src/index.ts",
+    "test": "node --experimental-vm-modules node_modules/vitest/vitest.mjs run",
+    "test:watch": "node --experimental-vm-modules node_modules/vitest/vitest.mjs",
+    "lint": "node node_modules/typescript/bin/tsc --noEmit"
   },
   "keywords": [
     "minecraft",

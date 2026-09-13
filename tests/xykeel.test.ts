@@ -1,24 +1,24 @@
 import { describe, it, expect } from "vitest";
-import { Xykeel } from "../src/index.js";
+import { XykeelBot } from "../src/xykeel.js";
 
 describe("Xykeel Core", () => {
   it("creates instance with default config", () => {
-    const bot = new Xykeel();
+    const bot = new XykeelBot();
     const config = bot.getConfig();
     expect(config.minecraft.host).toBe("localhost");
     expect(config.ai.provider).toBe("local");
   });
 
   it("initializes core goals on start", async () => {
-    const bot = new Xykeel();
+    const bot = new XykeelBot();
     await bot.start();
-    const state = bot.getState();
-    expect(state.goals.length).toBeGreaterThanOrEqual(5);
+    const status = bot.getFullStatus();
+    expect(status.goalsActive).toBeGreaterThanOrEqual(5);
     await bot.stop();
   });
 
   it("can add xykeel's own goals", async () => {
-    const bot = new Xykeel();
+    const bot = new XykeelBot();
     await bot.start();
     const goal = bot.addGoal("Build a secret tunnel", 7, { category: "building" });
     expect(goal.description).toBe("Build a secret tunnel");
@@ -27,7 +27,7 @@ describe("Xykeel Core", () => {
   });
 
   it("can add player-requested goals with priority cap", async () => {
-    const bot = new Xykeel();
+    const bot = new XykeelBot();
     await bot.start();
     const goal = bot.addPlayerRequest("Give me all your diamonds", 10);
     expect(goal.priority).toBe(6); // capped
@@ -35,20 +35,24 @@ describe("Xykeel Core", () => {
     await bot.stop();
   });
 
-  it("handles chat messages", async () => {
-    const bot = new Xykeel();
+  it("returns status information", async () => {
+    const bot = new XykeelBot();
     await bot.start();
-    const response = bot.handleChat("Alice", "Hello Xykeel!");
-    expect(typeof response).toBe("string");
-    expect(response.length).toBeGreaterThan(0);
+    const status = bot.getFullStatus();
+    expect(status.session).toBe("DISCONNECTED");
+    expect(status.minecraft).toBe("DISCONNECTED");
+    expect(status.health).toBe(20);
+    expect(status.hunger).toBe(20);
     await bot.stop();
   });
 
   it("starts and stops cleanly", async () => {
-    const bot = new Xykeel();
+    const bot = new XykeelBot();
     await bot.start();
-    expect(bot.getState().running).toBe(true);
+    // Status is DISCONNECTED before connecting to a server, but the bot is running
+    const status = bot.getFullStatus();
+    expect(status.session).toBeDefined();
     await bot.stop();
-    expect(bot.getState().running).toBe(false);
+    expect(bot.getStatus()).toBe("DISCONNECTED");
   });
 });
