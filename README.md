@@ -143,7 +143,7 @@ Xykeel evaluates risk before actions:
 
 ## Testing
 
-44 tests covering:
+78 tests across 14 test files covering:
 - Configuration loading
 - Logger creation and categories
 - Session state and handoff logic
@@ -152,12 +152,25 @@ Xykeel evaluates risk before actions:
 - Safety health checks and risk assessment
 - AI provider abstraction
 - Core Xykeel lifecycle
+- Minecraft connection, chat, world, inventory tracking
+- Navigation and survival actions
+- Autonomous planner
+- Home, farm, and location systems
+- Business system with financial tracking
+- Relationship system with trust scoring
 
 ## Current Status
 
 **Phase 1: Complete** — Foundation, config, logging, tests, startup/shutdown
+**Phase 2: Complete** — Minecraft connection (Mineflayer), chat, world, inventory
+**Phase 3: Complete** — Navigation, survival actions, gathering
+**Phase 4: Complete** — Autonomous planner, decision loop
+**Phase 5: Complete** — Personal life (home, farming, locations)
+**Phase 6: Complete** — Business system with transactions
+**Phase 7: Complete** — Relationship system with trust/sentiment
+**Phase 8: Complete** — Handoff state machine integrated
 
-**Next:** Phase 2 — Minecraft connection via Mineflayer
+**Next:** Phase 9 — Long-running deployment, connect all systems to live Minecraft
 
 ## License
 
