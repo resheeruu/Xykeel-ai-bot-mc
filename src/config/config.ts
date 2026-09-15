@@ -101,7 +101,7 @@ export function loadConfig(overrides?: Partial<XykeelConfig>): XykeelConfig {
     minecraft: {
       host: env("MC_HOST", "localhost"),
       port: envInt("MC_PORT", 25565),
-      version: env("MC_VERSION", "1.21.1"),
+      version: env("MC_VERSION", "1.21.11"),
       username: env("MC_USERNAME", "Xykeel"),
       email: env("MC_EMAIL"),
       password: env("MC_PASSWORD"),

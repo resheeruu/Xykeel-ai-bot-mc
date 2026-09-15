@@ -27,6 +27,9 @@ import { createLocationTracker } from "./world/locations.js";
 import { createRelationshipSystem } from "./relationships/system.js";
 import { createIdentitySystem, type IdentitySystem, type IdentityProfile } from "./identity/profile.js";
 import { buildContext, summarizeInventory, type BotContextForAI } from "./ai/context-builder.js";
+import { createCommandRegistry, createServerCommand, type CommandRegistry } from "./commands/registry.js";
+import { createGoalDecomposer, type GoalDecomposer } from "./goals/decomposer.js";
+import { createEnvironmentTracker, type EnvironmentTracker } from "./world/environment.js";
 
 const ACTION_TIMEOUT_MS = 45_000;
 
@@ -65,6 +68,9 @@ export class XykeelBot {
   private farmSystem: ReturnType<typeof createFarmSystem>;
   private locationTracker: ReturnType<typeof createLocationTracker>;
   private relationshipSystem: ReturnType<typeof createRelationshipSystem>;
+  private commandRegistry: CommandRegistry;
+  private goalDecomposer: GoalDecomposer;
+  private environmentTracker: EnvironmentTracker;
 
   // State
   private session: SessionState;
@@ -113,6 +119,9 @@ export class XykeelBot {
     this.farmSystem = createFarmSystem(this.logger);
     this.locationTracker = createLocationTracker(this.logger);
     this.relationshipSystem = createRelationshipSystem(this.logger);
+    this.commandRegistry = createCommandRegistry(this.logger);
+    this.goalDecomposer = createGoalDecomposer(this.logger);
+    this.environmentTracker = createEnvironmentTracker(this.logger);
 
     this.session = createSessionState();
     this.memory = createStore();
@@ -263,6 +272,10 @@ export class XykeelBot {
           this.memory, player.uuid, player.username, 1
         );
       }
+
+      // Detect server command responses (e.g., "[Server] /help" or command usage hints)
+      this.detectServerCommandsFromChat(username, message);
+
       // Xykeel's chat response
       const response = this.generateChatResponse(username, message);
       if (response) {
@@ -334,6 +347,86 @@ export class XykeelBot {
     }
   }
 
+  private recordEnvironmentObservations(
+    world: ReturnType<typeof this.worldTracker.getState>,
+    _inventory: ReturnType<typeof this.inventoryTracker.getState>
+  ): void {
+    // Record time of day
+    this.memory = this.environmentTracker.record(this.memory, {
+      category: "world",
+      key: "time_of_day",
+      value: world.isDaytime ? "day" : "night",
+      confidence: 1.0,
+      source: "observation",
+      notes: `Time: ${world.time}`,
+    });
+
+    // Record weather
+    if (world.weather !== "clear") {
+      this.memory = this.environmentTracker.record(this.memory, {
+        category: "world",
+        key: "weather",
+        value: world.weather,
+        confidence: 1.0,
+        source: "observation",
+        notes: "",
+      });
+    }
+
+    // Record nearby players as server knowledge
+    const players = this.playerTracker.getPlayers();
+    for (const player of players) {
+      this.memory = this.environmentTracker.record(this.memory, {
+        category: "server_info",
+        key: `player_${player.username}`,
+        value: { uuid: player.uuid, distance: player.distance },
+        confidence: 0.9,
+        source: "observation",
+        notes: `Observed at distance ${player.distance}`,
+      });
+    }
+
+    // Record dangerous areas from hostile entities
+    const hostiles = world.nearbyEntities.filter((e) => e.type === "hostile" && e.distance < 16);
+    if (hostiles.length > 0) {
+      this.memory = this.environmentTracker.record(this.memory, {
+        category: "danger",
+        key: `hostile_area_${Math.round(world.position?.x ?? 0)}_${Math.round(world.position?.z ?? 0)}`,
+        value: { hostiles: hostiles.map((h) => h.name), count: hostiles.length },
+        confidence: 0.95,
+        source: "observation",
+        notes: `${hostiles.length} hostile(s) nearby`,
+      });
+    }
+
+    // Record useful locations (crafting tables, furnaces, chests)
+    const usefulBlocks = world.nearbyBlocks.filter((b) =>
+      ["crafting_table", "furnace", "chest", "enchanting_table", "brewing_stand"].includes(b.name)
+    );
+    for (const block of usefulBlocks) {
+      this.memory = this.environmentTracker.record(this.memory, {
+        category: "useful",
+        key: block.name,
+        value: { name: block.name, distance: block.distance },
+        confidence: 0.95,
+        source: "observation",
+        notes: `Found ${block.name} at distance ${block.distance}`,
+      });
+    }
+
+    // Record biome
+    if (world.biome && world.biome !== "unknown") {
+      this.memory = this.environmentTracker.record(this.memory, {
+        category: "world",
+        key: "biome",
+        value: world.biome,
+        confidence: 0.9,
+        source: "observation",
+        notes: "",
+      });
+    }
+  }
+
   // ========================
   // AUTONOMY
   // ========================
@@ -377,6 +470,9 @@ export class XykeelBot {
     const world = this.worldTracker.getState();
     const inventory = this.inventoryTracker.getState();
 
+    // 1b. ENVIRONMENT: Record observed server knowledge
+    this.recordEnvironmentObservations(world, inventory);
+
     // 2. UPDATE STATE
     const healthCheck = evaluateHealth(this.health.health, this.health.hunger);
 
@@ -410,7 +506,20 @@ export class XykeelBot {
       return;
     }
 
-    // 5. CHECK GOALS
+    // 5. CHECK GOALS + PHASE ADVANCEMENT
+    const phaseCheck = this.goalDecomposer.shouldAdvancePhase(this.memory);
+    if (phaseCheck.shouldAdvance && phaseCheck.nextPhase) {
+      this.memory = this.goalDecomposer.advancePhase(this.memory, phaseCheck.nextPhase);
+      this.logger.system(`Life phase advanced to: ${phaseCheck.nextPhase}`);
+
+      // Auto-create projects for the new phase
+      const templates = (await import("./goals/decomposer.js")).getPhaseTemplates(phaseCheck.nextPhase);
+      for (const template of templates) {
+        const project = (await import("./goals/decomposer.js")).createProjectFromTemplate(template, phaseCheck.nextPhase);
+        this.memory = this.goalDecomposer.createProject(this.memory, project);
+      }
+    }
+
     const prioritized = prioritizeGoals(this.goals);
     if (prioritized.length === 0) {
       this.logger.goal("No active goals — idling");
@@ -1030,6 +1139,46 @@ export class XykeelBot {
 
     // Default: acknowledge but don't auto-obey
     return null;
+  }
+
+  private detectServerCommandsFromChat(sender: string, message: string): void {
+    const lower = message.toLowerCase();
+
+    // Detect command usage hints like "/help", "/home", "/tpa <player>"
+    const commandMatch = message.match(/\/([a-zA-Z]+)(?:\s+(\S+))?/);
+    if (commandMatch) {
+      const cmdName = commandMatch[1].toLowerCase();
+      const safety = this.commandRegistry.classifyCommand(`/${cmdName}`);
+
+      const existing = this.commandRegistry.get(this.memory, cmdName);
+      if (!existing) {
+        const cmd = createServerCommand({
+          name: cmdName,
+          safety,
+          discoveredVia: "chat_log",
+        });
+        this.memory = this.commandRegistry.register(this.memory, cmd);
+        this.logger.memory(`Discovered command from chat: /${cmdName} (safety: ${safety})`);
+      }
+    }
+
+    // Detect server messages that might contain command info
+    if (sender === "Server" || sender === "server" || lower.includes("server")) {
+      // Look for command-like patterns in server messages
+      const serverCmdMatch = message.match(/\b(?:commands?|type|use)\b.*?\/([a-zA-Z]+)/i);
+      if (serverCmdMatch) {
+        const cmdName = serverCmdMatch[1].toLowerCase();
+        const existing = this.commandRegistry.get(this.memory, cmdName);
+        if (!existing) {
+          const cmd = createServerCommand({
+            name: cmdName,
+            safety: this.commandRegistry.classifyCommand(`/${cmdName}`),
+            discoveredVia: "chat_log",
+          });
+          this.memory = this.commandRegistry.register(this.memory, cmd);
+        }
+      }
+    }
   }
 
   // ========================

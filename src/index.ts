@@ -32,7 +32,11 @@ process.on("unhandledRejection", (reason) => {
 
 // Start
 async function main(): Promise<void> {
-  await healthServer.start(config.server.healthPort);
+  try {
+    await healthServer.start(config.server.healthPort);
+  } catch (err) {
+    console.error("Health server failed to start (non-fatal):", err);
+  }
   await bot.start();
 }
 

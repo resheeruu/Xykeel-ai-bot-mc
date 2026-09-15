@@ -6,6 +6,24 @@ describe("Configuration", () => {
 
   beforeEach(() => {
     process.env = { ...originalEnv };
+    // Ensure defaults test is not polluted by runtime env vars
+    delete process.env.MC_HOST;
+    delete process.env.MC_PORT;
+    delete process.env.MC_VERSION;
+    delete process.env.MC_USERNAME;
+    delete process.env.MC_AUTH;
+    delete process.env.MC_EMAIL;
+    delete process.env.MC_PASSWORD;
+    delete process.env.AI_PROVIDER;
+    delete process.env.AI_ALLOW_PAID_PROVIDERS;
+    delete process.env.AI_RAVEN_ENABLED;
+    delete process.env.AI_RAVEN_BASE_URL;
+    delete process.env.AI_RAVEN_MODEL;
+    delete process.env.AI_RAVEN_API_KEY;
+    delete process.env.AUTONOMY_INTERVAL;
+    delete process.env.LOG_LEVEL;
+    delete process.env.LOG_OUTPUT;
+    delete process.env.HEALTH_PORT;
   });
 
   afterEach(() => {
@@ -16,7 +34,7 @@ describe("Configuration", () => {
     const config = loadConfig();
     expect(config.minecraft.host).toBe("localhost");
     expect(config.minecraft.port).toBe(25565);
-    expect(config.minecraft.version).toBe("1.21.1");
+    expect(config.minecraft.version).toBe("1.21.11");
     expect(config.minecraft.username).toBe("Xykeel");
     expect(config.minecraft.auth).toBe("offline");
     expect(config.ai.ravenEnabled).toBe(false);

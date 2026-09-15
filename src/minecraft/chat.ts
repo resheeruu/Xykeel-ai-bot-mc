@@ -26,14 +26,13 @@ export function createChatObserver(logger: XykeelLogger): ChatObserver {
 
   function start(bot: Bot): void {
 
-    bot.on("chat", (mfChatMsg: unknown) => {
-      const msg = mfChatMsg as { toString(): string; sender?: string; uuid?: string };
+    bot.on("chat", (username: string, message: string) => {
       const chatMsg: ChatMessage = {
-        sender: msg.sender ?? "unknown",
-        senderUuid: msg.uuid ?? "",
-        message: msg.toString(),
+        sender: username,
+        senderUuid: "",
+        message,
         timestamp: Date.now(),
-        isWhisper: msg.toString().includes("whispers") || msg.toString().includes("msg"),
+        isWhisper: false,
       };
 
       messages.push(chatMsg);
