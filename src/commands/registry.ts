@@ -31,49 +31,86 @@ export interface CommandRegistry {
   setCooldown(store: MemoryStore, name: string, durationMs: number): MemoryStore;
   isOnCooldown(store: MemoryStore, name: string): boolean;
   classifyCommand(name: string): CommandSafety;
+  classifyFullCommand(input: string): CommandSafety;
   canExecute(store: MemoryStore, name: string): { allowed: boolean; reason: string };
 }
 
-const DANGEROUS_PATTERNS = [
-  /ban/i, /kick/i, /op/i, /deop/i, /whitelist/i, /pardon/i,
-  /gamemode/i, /give\s+@/i, /effect\s+@/i, /tp\s+@/i,
-  /fill\s+/, /setblock\s+/, /summon\s+/, /kill\s+@/i,
-  /difficulty\s+/, /time\s+set\s+/, /weather\s+/i,
-  /destroycard/i, /stop\s+server/i, /reload/i,
+const DANGEROUS_NAMES = new Set([
+  "ban", "kick", "deop", "pardon", "whitelist",
+  "gamemode", "kill", "banlist", "pardon-ip",
+  "ban-ip", "kick-ip",
+]);
+
+const ADMIN_NAMES = new Set([
+  "op", "deop", "whitelist", "save-all", "save-off",
+  "publish", "data", "reload", "stop", "restart",
+]);
+
+const SAFE_NAMES = new Set([
+  "help", "list", "msg", "w", "t", "r", "me",
+  "spawn", "home", "tpa", "tpahere", "tpaccept", "tpdeny",
+  "back", "warp", "bal", "balance", "pay", "shop", "jobs",
+  "claim", "trust", "ecosystem", "motd", "rules", "rank",
+  "kit", "daily", "vote", "rtp", "tp", "home",
+  "sethome", "delhome", "near", "afk", "mail",
+  "report", "bug", "ping", "whois", "seen",
+  "discord", "apply", "staff",
+]);
+
+const DANGEROUS_ARGUMENT_PATTERNS = [
+  /@[ae]/,
+  /@\*/,
+  /@s/,
+  /@p/,
+  /\bgive\b/i,
+  /\beffect\b/i,
+  /\btp\b/i,
+  /\bfill\b/i,
+  /\bsetblock\b/i,
+  /\bsummon\b/i,
+  /\bkill\b/i,
+  /\bgamemode\b/i,
+  /\bdifficulty\b/i,
+  /\btime\s+set\b/i,
+  /\bweather\b/i,
+  /\bdestroy/i,
 ];
 
-const ADMIN_PATTERNS = [
-  /^\/?banlist/i, /^\/?op\s/i, /^\/?deop\s/i,
-  /^\/?whitelist\s+(add|remove|on|off|list)/i,
-  /^\/?save-all/i, /^\/?save-off/i,
-  /^\/?publish/i, /^\/?data\s+merge/i,
-];
+function extractCommandName(input: string): string {
+  const trimmed = input.trim();
+  const withoutSlash = trimmed.startsWith("/") ? trimmed.slice(1) : trimmed;
+  const match = withoutSlash.match(/^([a-zA-Z][a-zA-Z0-9-]*)/);
+  return match ? match[1].toLowerCase() : withoutSlash.toLowerCase().split(/\s+/)[0] ?? "";
+}
 
-const SAFE_PATTERNS = [
-  /^\/?help/i, /^\/?list/i, /^\/?msg\s/i, /^\/?w\s/i,
-  /^\/?t\s/i, /^\/?r\s/i, /^\/?me\s/i,
-  /^\/?spawn/i, /^\/?home/i, /^\/?tpa?\s/i,
-  /^\/?back/i, /^\/?warp\s/i, /^\/?bal(ance)?/i,
-  /^\/?pay\s/i, /^\/?shop/i, /^\/?jobs/i,
-  /^\/?claim/i, /^\/?trust\s/i, /^\/?ecosystem/i,
-  /^\/?motd/i, /^\/?rules/i, /^\/?rank/i,
-  /^\/?kit\s/i, /^\/?daily/i, /^\/?vote/i,
-];
+function hasDangerousArguments(args: string): boolean {
+  return DANGEROUS_ARGUMENT_PATTERNS.some((p) => p.test(args));
+}
 
 export function createCommandRegistry(logger: XykeelLogger): CommandRegistry {
   function classifyCommand(name: string): CommandSafety {
-    const lower = name.toLowerCase();
-    for (const pattern of DANGEROUS_PATTERNS) {
-      if (pattern.test(lower)) return "dangerous";
-    }
-    for (const pattern of ADMIN_PATTERNS) {
-      if (pattern.test(lower)) return "admin";
-    }
-    for (const pattern of SAFE_PATTERNS) {
-      if (pattern.test(lower)) return "safe";
-    }
-    if (lower.startsWith("/")) return "moderate";
+    const cmdName = extractCommandName(name);
+
+    if (DANGEROUS_NAMES.has(cmdName)) return "dangerous";
+    if (ADMIN_NAMES.has(cmdName)) return "admin";
+    if (SAFE_NAMES.has(cmdName)) return "safe";
+
+    if (name.startsWith("/")) return "moderate";
     return "unknown";
+  }
+
+  function classifyFullCommand(input: string): CommandSafety {
+    const base = classifyCommand(input);
+
+    if (base === "dangerous" || base === "admin") return base;
+
+    const argsStart = input.indexOf(" ");
+    if (argsStart !== -1) {
+      const args = input.slice(argsStart);
+      if (hasDangerousArguments(args)) return "dangerous";
+    }
+
+    return base;
   }
 
   function registerCmd(store: MemoryStore, cmd: ServerCommand): MemoryStore {
@@ -171,7 +208,7 @@ export function createCommandRegistry(logger: XykeelLogger): CommandRegistry {
     return { allowed: true, reason: "OK" };
   }
 
-  return { register: registerCmd, get, getAll, getBySafety, recordExecution, setCooldown, isOnCooldown, classifyCommand, canExecute };
+  return { register: registerCmd, get, getAll, getBySafety, recordExecution, setCooldown, isOnCooldown, classifyCommand, classifyFullCommand, canExecute };
 }
 
 export function createServerCommand(params: {

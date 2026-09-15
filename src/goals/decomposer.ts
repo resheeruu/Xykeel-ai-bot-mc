@@ -306,13 +306,24 @@ export function createGoalDecomposer(logger: XykeelLogger): GoalDecomposer {
     const project = getProject(store, projectId);
     if (!project) return store;
 
+    const incompleteRequired = project.tasks.filter((t) => t.required && t.status !== "completed");
+    if (incompleteRequired.length > 0) {
+      logger.goal(`Cannot complete project ${project.name}: ${incompleteRequired.length} required tasks incomplete`);
+      const blockedProject: Project = {
+        ...project,
+        status: "blocked",
+        updatedAt: Date.now(),
+      };
+      return remember(store, "project", projectId, blockedProject, "high");
+    }
+
     const updatedProject: Project = {
       ...project,
       status: "completed",
       completedAt: Date.now(),
       updatedAt: Date.now(),
       tasks: project.tasks.map((t) =>
-        t.status !== "completed" ? { ...t, status: "skipped" as const } : t
+        t.status !== "completed" ? { ...t, status: "skipped" as const, result: t.result || "Not required for completion" } : t
       ),
     };
 
@@ -336,10 +347,6 @@ export function createGoalDecomposer(logger: XykeelLogger): GoalDecomposer {
     const currentProjects = getProjectsByPhase(store, currentPhase);
 
     if (currentProjects.length === 0) {
-      const idx = PHASE_ORDER.indexOf(currentPhase);
-      if (idx >= 0 && idx < PHASE_ORDER.length - 1) {
-        return { shouldAdvance: true, nextPhase: PHASE_ORDER[idx + 1] };
-      }
       return { shouldAdvance: false, nextPhase: null };
     }
 

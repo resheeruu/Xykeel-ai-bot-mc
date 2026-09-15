@@ -1,5 +1,5 @@
 import type { XykeelLogger } from "../logging/logger.js";
-import type { InventoryState } from "../minecraft/inventory.js";
+import type { InventoryState, TrackedItem } from "../minecraft/inventory.js";
 
 export type ToolTier = "none" | "wooden" | "stone" | "iron" | "golden" | "diamond" | "netherite";
 export type ArmorTier = "none" | "leather" | "chainmail" | "iron" | "golden" | "diamond" | "netherite";
@@ -97,14 +97,25 @@ export function evaluateEquipment(logger: XykeelLogger, inventory: InventoryStat
     let bestTier: ToolTier = "none";
     let durability = 0;
     let maxDurability = 0;
+    let bestItem: TrackedItem | null = null;
 
     for (const item of inventory.items) {
       if (item.name.includes(prefix)) {
         const tier = getToolTier(item.name);
         if (tierRank(tier) > tierRank(bestTier)) {
           bestTier = tier;
+          bestItem = item;
+        } else if (tier === bestTier && bestItem) {
+          if (item.remainingDurability > bestItem.remainingDurability) {
+            bestItem = item;
+          }
         }
       }
+    }
+
+    if (bestItem && bestItem.maxDurability > 0) {
+      durability = bestItem.remainingDurability;
+      maxDurability = bestItem.maxDurability;
     }
 
     return {
@@ -124,6 +135,10 @@ export function evaluateEquipment(logger: XykeelLogger, inventory: InventoryStat
       const info = Object.entries(ARMOR_PATTERNS).find(([pattern]) => item.name.includes(pattern));
       if (info && info[1].slot === slot) {
         tier = info[1].tier;
+        if (item.maxDurability > 0) {
+          durability = item.remainingDurability;
+          maxDurability = item.maxDurability;
+        }
       }
     }
 
@@ -155,14 +170,19 @@ export function evaluateEquipment(logger: XykeelLogger, inventory: InventoryStat
     else foodQuality = "poor";
   }
 
+  const isToolOrArmor = (name: string): boolean =>
+    name.includes("_pickaxe") || name.includes("_sword") || name.includes("_axe") ||
+    name.includes("_hoe") || name.includes("_helmet") || name.includes("_chestplate") ||
+    name.includes("_leggings") || name.includes("_boots") || name.includes("_shovel");
+
   const materials = {
-    wood: inventory.items.filter((i) => i.name.includes("_log") || i.name.includes("_plank")).reduce((s, i) => s + i.count, 0),
-    stone: inventory.items.filter((i) => i.name === "cobblestone" || i.name === "stone").reduce((s, i) => s + i.count, 0),
-    iron: inventory.items.filter((i) => i.name.includes("iron_")).reduce((s, i) => s + i.count, 0),
-    gold: inventory.items.filter((i) => i.name.includes("gold_")).reduce((s, i) => s + i.count, 0),
-    diamond: inventory.items.filter((i) => i.name.includes("diamond")).reduce((s, i) => s + i.count, 0),
+    wood: inventory.items.filter((i) => (i.name.includes("_log") || i.name === "stick" || i.name.includes("_plank")) && !isToolOrArmor(i.name)).reduce((s, i) => s + i.count, 0),
+    stone: inventory.items.filter((i) => (i.name === "cobblestone" || i.name === "stone" || i.name === "deepslate") && !isToolOrArmor(i.name)).reduce((s, i) => s + i.count, 0),
+    iron: inventory.items.filter((i) => (i.name === "iron_ingot" || i.name === "raw_iron" || i.name === "iron_nugget") && !isToolOrArmor(i.name)).reduce((s, i) => s + i.count, 0),
+    gold: inventory.items.filter((i) => (i.name === "gold_ingot" || i.name === "raw_gold" || i.name === "gold_nugget") && !isToolOrArmor(i.name)).reduce((s, i) => s + i.count, 0),
+    diamond: inventory.items.filter((i) => (i.name === "diamond" || i.name === "raw_diamond") && !isToolOrArmor(i.name)).reduce((s, i) => s + i.count, 0),
     cobblestone: inventory.items.filter((i) => i.name === "cobblestone").reduce((s, i) => s + i.count, 0),
-    dirt: inventory.items.filter((i) => i.name === "dirt").reduce((s, i) => s + i.count, 0),
+    dirt: inventory.items.filter((i) => i.name === "dirt" || i.name === "coarse_dirt" || i.name === "grass_block").reduce((s, i) => s + i.count, 0),
     seeds: inventory.items.filter((i) => i.name.includes("seeds")).reduce((s, i) => s + i.count, 0),
   };
 

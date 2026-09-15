@@ -30,6 +30,7 @@ import { buildContext, summarizeInventory, type BotContextForAI } from "./ai/con
 import { createCommandRegistry, createServerCommand, type CommandRegistry } from "./commands/registry.js";
 import { createGoalDecomposer, type GoalDecomposer } from "./goals/decomposer.js";
 import { createEnvironmentTracker, type EnvironmentTracker } from "./world/environment.js";
+import { evaluateEquipment, type EquipmentEvaluation } from "./minecraft/evaluation.js";
 
 const ACTION_TIMEOUT_MS = 45_000;
 
@@ -78,6 +79,7 @@ export class XykeelBot {
   private goals: Goal[] = [];
   private memoryPath: string;
   private running = false;
+  private equipmentEvaluation: EquipmentEvaluation | null = null;
 
   // Runtime safety
   private actionAbort: AbortController | null = null;
@@ -470,6 +472,9 @@ export class XykeelBot {
     const world = this.worldTracker.getState();
     const inventory = this.inventoryTracker.getState();
 
+    // 1a. EQUIPMENT: Evaluate tool/armor status
+    this.equipmentEvaluation = evaluateEquipment(this.logger, inventory);
+
     // 1b. ENVIRONMENT: Record observed server knowledge
     this.recordEnvironmentObservations(world, inventory);
 
@@ -477,6 +482,8 @@ export class XykeelBot {
     const healthCheck = evaluateHealth(this.health.health, this.health.hunger);
 
     // 3. CHECK SAFETY
+    const lowDurability = this.equipmentEvaluation.tools.pickaxe.maxDurability > 0 &&
+      this.equipmentEvaluation.tools.pickaxe.durability < this.equipmentEvaluation.tools.pickaxe.maxDurability * 0.1;
     const risk = assessRisk({
       health: this.health.health,
       hunger: this.health.hunger,
@@ -484,7 +491,7 @@ export class XykeelBot {
       nearHostile: world.nearbyEntities.some(
         (e) => e.type === "hostile" && e.distance < 10
       ),
-      lowDurability: false,
+      lowDurability,
       nightTime: !world.isDaytime,
     });
 

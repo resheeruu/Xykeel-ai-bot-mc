@@ -1,9 +1,26 @@
 import type { Bot } from "mineflayer";
 import type { XykeelLogger } from "../logging/logger.js";
 
+export interface TrackedItem {
+  name: string;
+  count: number;
+  slot: number;
+  durabilityUsed: number;
+  maxDurability: number;
+  remainingDurability: number;
+}
+
+export interface TrackedArmor {
+  name: string;
+  slot: number;
+  durabilityUsed: number;
+  maxDurability: number;
+  remainingDurability: number;
+}
+
 export interface InventoryState {
-  items: Array<{ name: string; count: number; slot: number }>;
-  armor: Array<{ name: string; slot: number }>;
+  items: TrackedItem[];
+  armor: TrackedArmor[];
   totalItems: number;
   isFull: boolean;
   hasFood: boolean;
@@ -48,20 +65,34 @@ export function createInventoryTracker(_logger: XykeelLogger): InventoryTracker 
   };
 
   function update(bot: Bot): void {
-    const items = bot.inventory.items().map((item) => ({
-      name: item.name,
-      count: item.count,
-      slot: item.slot,
-    }));
+    const items = bot.inventory.items().map((item) => {
+      const durabilityUsed = typeof item.durabilityUsed === "number" ? item.durabilityUsed : 0;
+      const maxDurability = typeof item.maxDurability === "number" ? item.maxDurability : 0;
+      return {
+        name: item.name,
+        count: item.count,
+        slot: item.slot,
+        durabilityUsed,
+        maxDurability,
+        remainingDurability: maxDurability > 0 ? maxDurability - durabilityUsed : 0,
+      };
+    });
 
     const armor = bot.inventory.slots
       ? bot.inventory.slots
           .slice(5, 9)
           .filter((slot): slot is NonNullable<typeof slot> => slot !== null)
-          .map((slot) => ({
-            name: slot.name,
-            slot: slot.slot,
-          }))
+          .map((slot) => {
+            const durabilityUsed = typeof slot.durabilityUsed === "number" ? slot.durabilityUsed : 0;
+            const maxDurability = typeof slot.maxDurability === "number" ? slot.maxDurability : 0;
+            return {
+              name: slot.name,
+              slot: slot.slot,
+              durabilityUsed,
+              maxDurability,
+              remainingDurability: maxDurability > 0 ? maxDurability - durabilityUsed : 0,
+            };
+          })
       : [];
 
     const totalItems = items.reduce((sum, item) => sum + item.count, 0);

@@ -19,6 +19,7 @@ export interface ServerKnowledge {
 export interface EnvironmentTracker {
   record(store: MemoryStore, knowledge: Omit<ServerKnowledge, "id" | "observedAt" | "lastConfirmedAt" | "timesObserved" | "verified">): MemoryStore;
   confirm(store: MemoryStore, id: string): MemoryStore;
+  failObservation(store: MemoryStore, id: string): MemoryStore;
   get(store: MemoryStore, category: ServerKnowledge["category"], key: string): ServerKnowledge | null;
   getByCategory(store: MemoryStore, category: ServerKnowledge["category"]): ServerKnowledge[];
   getAll(store: MemoryStore): ServerKnowledge[];
@@ -29,6 +30,17 @@ export interface EnvironmentTracker {
   getServerSummary(store: MemoryStore): string;
 }
 
+const SOURCE_INITIAL_CONFIDENCE: Record<ServerKnowledge["source"], number> = {
+  observation: 0.9,
+  command_response: 0.85,
+  tab_complete: 0.7,
+  death: 0.95,
+  success: 0.8,
+  failure: 0.7,
+  chat: 0.4,
+  player_hint: 0.35,
+};
+
 export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTracker {
   function record(
     store: MemoryStore,
@@ -36,10 +48,12 @@ export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTrack
   ): MemoryStore {
     const existing = get(store, knowledge.category, knowledge.key);
     if (existing) {
+      const isRepeat = existing.source === knowledge.source;
+      const confidenceBoost = isRepeat ? 0.05 : 0.1;
       const updated: ServerKnowledge = {
         ...existing,
         value: knowledge.value,
-        confidence: Math.min(1.0, existing.confidence + 0.1),
+        confidence: Math.min(1.0, existing.confidence + confidenceBoost),
         source: knowledge.source,
         lastConfirmedAt: Date.now(),
         timesObserved: existing.timesObserved + 1,
@@ -48,6 +62,7 @@ export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTrack
       return remember(store, "env_knowledge", existing.id, updated, "medium");
     }
 
+    const baseConfidence = SOURCE_INITIAL_CONFIDENCE[knowledge.source] ?? 0.5;
     const newKnowledge: ServerKnowledge = {
       ...knowledge,
       id: `env-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
@@ -55,9 +70,10 @@ export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTrack
       lastConfirmedAt: Date.now(),
       timesObserved: 1,
       verified: false,
+      confidence: knowledge.confidence ?? baseConfidence,
     };
 
-    logger.memory(`Server knowledge recorded: ${knowledge.category}/${knowledge.key}`);
+    logger.memory(`Server knowledge recorded: ${knowledge.category}/${knowledge.key} (source: ${knowledge.source}, confidence: ${newKnowledge.confidence.toFixed(2)})`);
     return remember(store, "env_knowledge", newKnowledge.id, newKnowledge, "medium");
   }
 
@@ -74,6 +90,25 @@ export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTrack
     };
 
     return remember(store, "env_knowledge", id, updated, "low");
+  }
+
+  function failObservation(store: MemoryStore, id: string): MemoryStore {
+    const entry = recall(store, "env_knowledge", id);
+    if (!entry) return store;
+
+    const knowledge = entry.value as ServerKnowledge;
+    const decay = knowledge.source === "chat" || knowledge.source === "player_hint" ? 0.25 : 0.15;
+    const newConfidence = Math.max(0, knowledge.confidence - decay);
+
+    const updated: ServerKnowledge = {
+      ...knowledge,
+      confidence: newConfidence,
+      lastConfirmedAt: Date.now(),
+      notes: knowledge.notes ? `${knowledge.notes} [failed: ${new Date().toISOString()}]` : `Failed observation at ${new Date().toISOString()}`,
+    };
+
+    logger.memory(`Knowledge failed: ${knowledge.category}/${knowledge.key} confidence ${knowledge.confidence.toFixed(2)} -> ${newConfidence.toFixed(2)}`);
+    return remember(store, "env_knowledge", id, updated, "medium");
   }
 
   function get(store: MemoryStore, category: ServerKnowledge["category"], key: string): ServerKnowledge | null {
@@ -141,5 +176,5 @@ export function createEnvironmentTracker(logger: XykeelLogger): EnvironmentTrack
     return sections.join("\n\n") || "No verified server knowledge.";
   }
 
-  return { record, confirm, get, getByCategory, getAll, getHighConfidence, getUnverified, markVerified, forget, getServerSummary };
+  return { record, confirm, failObservation, get, getByCategory, getAll, getHighConfidence, getUnverified, markVerified, forget, getServerSummary };
 }
